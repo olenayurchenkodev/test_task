@@ -17,7 +17,7 @@ function Home(props) {
                 <p>Log out</p>
             </header>
             <div>
-
+                <UserProfile/>
             </div>
         </>
     );
