@@ -17,7 +17,7 @@ function Home(props) {
                 <p>Log out</p>
             </header>
             <div>
-
+                <UserProfile username={"fjdfjkdjkf"} useremail={"mail@gmail.com"}/>
             </div>
         </>
     );

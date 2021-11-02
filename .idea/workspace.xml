@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d3648d1-d750-4fdb-af9b-44211e4b4558" name="Changes" comment="bug fixed">
-      <change afterPath="$PROJECT_DIR$/src/screens/app/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/userProfile/img/Delete.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/userProfile/img/Edit.svg" afterDir="false" />
+    <list default="true" id="3d3648d1-d750-4fdb-af9b-44211e4b4558" name="Changes" comment="all screens added">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dashboardCard/dashboardCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboardCard/dashboardCard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profileCard/buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profileCard/buttons.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profileCard/profileCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profileCard/profileCard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userAvatar/userAvatar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userAvatar/userAvatar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userCard/userCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userCard/userCard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/home/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/userProfile/userProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/userProfile/userProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +47,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -97,7 +89,9 @@
       <workItem from="1635841505707" duration="12161000" />
       <workItem from="1635853888468" duration="117000" />
       <workItem from="1635854128592" duration="2241000" />
-      <workItem from="1635860574505" duration="10614000" />
+      <workItem from="1635860574505" duration="11359000" />
+      <workItem from="1635880825642" duration="200000" />
+      <workItem from="1635884713415" duration="1015000" />
     </task>
     <task id="LOCAL-00001" summary="first components">
       <created>1635842234015</created>
@@ -113,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635842474079</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="all screens added">
+      <created>1635872086392</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635872086392</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +138,8 @@
     </ignored-roots>
     <MESSAGE value="first components" />
     <MESSAGE value="bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixed" />
+    <MESSAGE value="all screens added" />
+    <option name="LAST_COMMIT_MESSAGE" value="all screens added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
