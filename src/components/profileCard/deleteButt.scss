@@ -1,0 +1,15 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{
+  margin: 0;
+}
+.delete{
+  height: 39px;
+  width: 160px;
+  text-align: center;
+  border-radius: 0 0 16px 0;
+}
+.delete:hover{
+  background: $red;
+  color: $white;
+}

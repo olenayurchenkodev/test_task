@@ -1,0 +1,29 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{
+  margin: 0;
+}
+button{
+  border: none;
+  background: none;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.75px;
+  color: $body;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  width: 320px;
+  height: 40px;
+  border: 1px solid $line;
+  background: $white;
+  box-sizing: border-box;
+  border-radius: 0 0 16px 16px;
+}

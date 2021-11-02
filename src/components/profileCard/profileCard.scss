@@ -1,0 +1,48 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{margin: 0;}
+.profile_card{
+  width: 320px;
+  .space{
+    display: block;
+    height: 40px;
+    border: 1px solid $line;
+    box-sizing: border-box;
+    border-radius: 0 0 16px 16px;
+    border-top: none;
+  }
+  .buttons{
+    display: none;
+  }
+}
+.info{
+  width: inherit;
+  height: 258px;
+  background: $white;
+  border: 1px solid $line;
+  box-sizing: border-box;
+  border-radius: 16px 16px 0 0;
+  border-bottom: none;
+  p{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    margin: 20px;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.75px;
+    text-align: center;
+    color: $body;
+  }
+  .title{font-weight: 500;}
+}
+.profile_card:hover{
+    .buttons{
+      display: flex;
+    }
+  .space{
+    display: none;
+  }
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.04);
+  border-radius: 16px;
+}
+

@@ -1,0 +1,41 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{margin: 0;}
+.dashboardCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 55px;
+  width: fit-content;
+  height: 278px;
+  background: $white;
+  border: 1px solid $line;
+  box-sizing: border-box;
+  border-radius: 32px;
+  p{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 34px;
+    letter-spacing: 1px;
+    color: $title_active;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 20px;
+  }
+}
+.number{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #14142B;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 50px 0;
+}

@@ -1,0 +1,26 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{margin: 0;}
+.userCard{
+  width: 396px;
+  height: 208px;
+  background: $white;
+  border: 1px solid $line;
+  box-sizing: border-box;
+  border-radius: 16px;
+  p{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    margin: 20px;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.75px;
+    text-align: center;
+    color: $body;
+  }
+  .title{font-weight: 500;}
+}
+.userCard:hover{
+  box-shadow: 0px 8px 16px rgba(17, 17, 17, 0.04);
+  border-radius: 16px;
+}
