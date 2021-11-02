@@ -1,0 +1,40 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{margin: 0;}
+header{
+  ul{
+    padding-left: 500px;
+    list-style: none;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  li{
+    display: flex;
+    text-align: right;
+    margin-left: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.75px;
+    color: $body;
+  }
+  .active{
+    color: $title_active;
+  }
+}
+.profiles::after{
+  content: url("./img/profile.svg");
+  margin-left: 8px;
+}
+.dashboard::after{
+  content: url("./img/dashboard.svg");
+  margin-left: 8px;
+}
+.users::after{
+  content: url("./img/users.svg");
+  margin-left: 8px;
+}

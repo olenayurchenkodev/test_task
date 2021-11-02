@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserAvatar from "./components/userAvatar/userAvatar";
-import App from "./App";
+import { BrowserRouter } from 'react-router-dom';
+import App from "./screens/app/App";
 
 ReactDOM.render(
   <React.StrictMode>
-      <App/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

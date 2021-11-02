@@ -1,11 +1,11 @@
 import React from 'react';
-import {Route, Router} from "react-router-dom";
-import NavBar from "./components/navBar/navBar";
+import './app.scss';
+import Home from '../home/home';
 
 function App(props) {
     return (
         <div>
-
+            <Home/>
         </div>
     );
 }

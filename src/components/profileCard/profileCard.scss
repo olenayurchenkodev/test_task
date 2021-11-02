@@ -2,6 +2,8 @@
 @import '../../less/style.scss';
 *{margin: 0;}
 .profile_card{
+  display: block;
+  margin-bottom: 60px;
   width: 320px;
   .space{
     display: block;
@@ -10,6 +12,7 @@
     box-sizing: border-box;
     border-radius: 0 0 16px 16px;
     border-top: none;
+    background: $white;
   }
   .buttons{
     display: none;

@@ -1,0 +1,22 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+.dashboard_screen{
+  padding: 60px 120px;
+  h2{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 34px;
+    letter-spacing: 1px;
+    color: $title_active;
+  }
+}
+.dashboard_set{
+  display: flex;
+  flex-wrap: wrap;
+  width: inherit;
+  padding: 60px 0;
+  align-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,21 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+
+.links{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+  h3{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 72px;
+    letter-spacing: 1px;
+    color: $title_active;
+    text-align: center;
+    padding: 30px 60px;
+    background: $input_bg;
+    border-radius: 12px;
+  }
+}

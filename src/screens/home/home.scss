@@ -1,0 +1,23 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{margin: 0;}
+header{
+  padding: 10px 120px;
+  display: flex;
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.04);
+  p{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.75px;
+    color: $body;
+  }
+}
+
