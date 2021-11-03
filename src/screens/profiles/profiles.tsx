@@ -1,8 +1,9 @@
+// @ts-ignore
 import React from 'react';
 import ProfileCard from '../../components/profileCard/profileCard';
 import './profiles.scss';
 
-function Profiles(props) {
+function Profiles() {
     return (
         <div className={"profile_screen"}>
             <h2>Profiles:</h2>

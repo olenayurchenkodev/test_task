@@ -1,18 +1,26 @@
-import React from 'react';
-import PropTypes from "prop-types";
+// @ts-ignore
+import React, {useState, useEffect, MouseEvent } from 'react';
 import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
 import './deleteButt.scss';
+import PopupProfile from '../popupProfile/popupProfile';
 
-function ProfileCard(props) {
+export interface StandardComponentProps{
+    name: string,
+    sex: string,
+    birthdate: string,
+    location: string
+}
+
+function ProfileCard({name, sex, birthdate, location}: StandardComponentProps) {
     return (
         <div className={"profile_card"}>
             <div className={"info"}>
-                <p className={"title"}>{props.name}</p>
-                <p>{props.sex}</p>
-                <p>{props.birthdate}</p>
-                <p>{props.location}</p>
+                <p className={"title"}>{name}</p>
+                <p>{sex}</p>
+                <p>{birthdate}</p>
+                <p>{location}</p>
             </div>
             <div className={"space"}/>
             <div className={"buttons"}>
@@ -22,13 +30,6 @@ function ProfileCard(props) {
         </div>
     );
 }
-
-ProfileCard.propTypes={
-    name: PropTypes.string,
-    sex: PropTypes.string,
-    birthdate: PropTypes.string,
-    location: PropTypes.string
-};
 
 export default ProfileCard;
 //<ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>

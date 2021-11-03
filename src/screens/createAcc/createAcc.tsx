@@ -1,10 +1,11 @@
+// @ts-ignore
 import React from 'react';
 import './createAcc.scss';
 import './formElem.scss';
 import './isAdmin.scss';
 import './submit.scss';
 
-function CreateAcc(props) {
+function CreateAcc() {
     return (
         <div className={"createAcc"}>
             <h2>Create your account</h2>

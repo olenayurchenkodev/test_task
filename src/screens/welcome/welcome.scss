@@ -19,3 +19,9 @@
     border-radius: 12px;
   }
 }
+.welcomeItem{
+  text-decoration: none;
+}
+.welcomeItem:visited{
+  color: $body;
+}

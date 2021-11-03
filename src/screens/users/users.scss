@@ -21,3 +21,9 @@
   align-content: space-between;
   align-items: center;
 }
+.userItem:visited {
+  color: $body;
+}
+.userItem{
+  text-decoration: none;
+}

@@ -1,9 +1,10 @@
+// @ts-ignore
 import React from 'react';
 import './formElem.scss';
 import './signIn.scss';
 import './submit.scss';
 
-function SignIn(props) {
+function SignIn() {
     return (
         <div>
             <div className={"signIn"}>

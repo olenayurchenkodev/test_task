@@ -1,16 +1,21 @@
+// @ts-ignore
 import React from 'react';
 import Edit from './img/Edit.svg';
 import Delete from './img/Delete.svg';
-import PropTypes from "prop-types";
 import ProfileCard from '../../components/profileCard/profileCard';
 import './userProfile.scss';
 
-function UserProfile(props) {
+export interface StandardComponentProps{
+    username: string,
+    useremail: string
+}
+
+function UserProfile({username, useremail}: StandardComponentProps) {
     return (
         <div className={"user_profiles"}>
             <div className={"user_info"}>
-                <h3>{props.username}</h3>
-                <h3>{props.useremail}</h3>
+                <h3>{username}</h3>
+                <h3>{useremail}</h3>
                 <p>user</p>
                 <img src={Edit} alt={"edit"}/><img src={Delete} alt={"delete"}/>
             </div>
@@ -23,11 +28,6 @@ function UserProfile(props) {
             </div>
         </div>
     );
-}
-
-UserProfile.propTypes={
-    usernsme: PropTypes.string,
-    useremail: PropTypes.string
 }
 
 export default UserProfile;

@@ -22,9 +22,6 @@ header{
     letter-spacing: 0.75px;
     color: $body;
   }
-  .active{
-    color: $title_active;
-  }
 }
 .profiles::after{
   content: url("./img/profile.svg");
@@ -37,4 +34,13 @@ header{
 .users::after{
   content: url("./img/users.svg");
   margin-left: 8px;
+}
+.menuItem:visited {
+  color: $body;
+}
+.menuItem{
+  text-decoration: none;
+}
+.active{
+  color: $title_active;
 }
