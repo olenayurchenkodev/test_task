@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d3648d1-d750-4fdb-af9b-44211e4b4558" name="Changes" comment="all screens added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dashboardCard/dashboardCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboardCard/dashboardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profileCard/profileCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profileCard/profileCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userAvatar/userAvatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userAvatar/userAvatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/userCard/userCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/userCard/userCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/createAcc/createAcc.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/createAcc/createAcc.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/dashboard/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/home/home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/home/listLinks.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/home/listLinks.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profiles/profiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profiles/profiles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/signIn/signIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/signIn/signIn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/userProfile/userProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/userProfile/userProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/userProfile/userProfile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/userProfile/userProfile.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/users/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/users/users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/users/users.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/users/users.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/welcome/welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/welcome/welcome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/welcome/welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/welcome/welcome.scss" afterDir="false" />
-    </list>
+    <list default="true" id="3d3648d1-d750-4fdb-af9b-44211e4b4558" name="Changes" comment="remake to typescript and routers" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +95,7 @@
       <workItem from="1635860574505" duration="11359000" />
       <workItem from="1635880825642" duration="200000" />
       <workItem from="1635884713415" duration="2106000" />
-      <workItem from="1635926869462" duration="25548000" />
+      <workItem from="1635926869462" duration="25892000" />
     </task>
     <task id="LOCAL-00001" summary="first components">
       <created>1635842234015</created>
@@ -140,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635872086392</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="remake to typescript and routers">
+      <created>1635958203498</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1635958203498</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +150,8 @@
     <MESSAGE value="first components" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="all screens added" />
-    <option name="LAST_COMMIT_MESSAGE" value="all screens added" />
+    <MESSAGE value="remake to typescript and routers" />
+    <option name="LAST_COMMIT_MESSAGE" value="remake to typescript and routers" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
