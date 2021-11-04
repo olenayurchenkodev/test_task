@@ -43,7 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../crud_applic/test_task" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -98,6 +98,7 @@
       <workItem from="1635880825642" duration="200000" />
       <workItem from="1635884713415" duration="2106000" />
       <workItem from="1635926869462" duration="27776000" />
+      <workItem from="1636014555182" duration="1259000" />
     </task>
     <task id="LOCAL-00001" summary="first components">
       <created>1635842234015</created>
