@@ -1,9 +1,10 @@
 // @ts-ignore
-import React from 'react';
+import React, { useState } from 'react';
 import Edit from './img/Edit.svg';
 import Delete from './img/Delete.svg';
 import ProfileCard from '../../components/profileCard/profileCard';
 import './userProfile.scss';
+import PopupUser from '../../components/popupUser/popupUser';
 
 export interface StandardComponentProps{
     username: string,
@@ -11,13 +12,22 @@ export interface StandardComponentProps{
 }
 
 function UserProfile({username, useremail}: StandardComponentProps) {
+    const [state, setState] = useState(false);
+
+    const openPopup = () =>{
+        setState(prev => ! prev);
+        console.log(state);
+    }
+
     return (
         <div className={"user_profiles"}>
             <div className={"user_info"}>
                 <h3>{username}</h3>
                 <h3>{useremail}</h3>
                 <p>user</p>
-                <img src={Edit} alt={"edit"}/><img src={Delete} alt={"delete"}/>
+                <div className={"imgs"}>
+                    <img src={Edit} alt={"edit"} onClick={openPopup}/><img src={Delete} alt={"delete"}/>
+                </div>
             </div>
             <h2>Profiles:</h2>
             <div className={"profile_set"}>
@@ -26,6 +36,7 @@ function UserProfile({username, useremail}: StandardComponentProps) {
                 <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
                 <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
             </div>
+            <PopupUser state={state} setState={setState}/>
         </div>
     );
 }

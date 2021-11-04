@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, {useState, useEffect, MouseEvent } from 'react';
+import React, {useState } from 'react';
 import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
@@ -14,20 +14,30 @@ export interface StandardComponentProps{
 }
 
 function ProfileCard({name, sex, birthdate, location}: StandardComponentProps) {
+    const [state, setState] = useState(false)
+
+    const openPopup = () =>{
+        setState(prev => ! prev);
+    }
+
     return (
-        <div className={"profile_card"}>
-            <div className={"info"}>
-                <p className={"title"}>{name}</p>
-                <p>{sex}</p>
-                <p>{birthdate}</p>
-                <p>{location}</p>
+        <>
+            <div className={"profile_card"}>
+                <div className={"info"}>
+                    <p className={"title"}>{name}</p>
+                    <p>{sex}</p>
+                    <p>{birthdate}</p>
+                    <p>{location}</p>
+                </div>
+                <div className={"space"}/>
+                <div className={"buttons"}>
+                    <button className={"edit"} onClick={openPopup}>edit</button>
+
+                    <button className={"delete"}>delete</button>
+                </div>
             </div>
-            <div className={"space"}/>
-            <div className={"buttons"}>
-                <button className={"edit"}>edit</button>
-                <button className={"delete"}>delete</button>
-            </div>
-        </div>
+            <PopupProfile state={state} setState={setState}/>
+        </>
     );
 }
 

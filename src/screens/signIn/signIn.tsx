@@ -1,6 +1,9 @@
 // @ts-ignore
 import React from 'react';
-import './formElem.scss';
+import PassTypeComponent from '../../components/formComponents/passTypeComponent';
+import SubmitTypeComponent from '../../components/formComponents/submitTypeComponent';
+import TextTypeComponent from '../../components/formComponents/textTypeComponent';
+import '../../less/style.scss';
 import './signIn.scss';
 import './submit.scss';
 
@@ -10,15 +13,9 @@ function SignIn() {
             <div className={"signIn"}>
                 <h2>Sign in</h2>
                 <form>
-                    <div className={"formElem"}>
-                        <label htmlFor={"email"}>Email</label>
-                        <input type={"text"} id={"email"} name={"email"}/>
-                    </div>
-                    <div className={"formElem"}>
-                        <label htmlFor={"password"}>Password</label>
-                        <input type={"password"} id={"password"} name={"password"}/>
-                    </div>
-                    <input type={"submit"} id={"submit"} value={"Sign Up"}/>
+                    <TextTypeComponent name={"email"} />
+                    <PassTypeComponent />
+                    <SubmitTypeComponent name={"Sign In"}/>
                 </form>
             </div>
         </div>

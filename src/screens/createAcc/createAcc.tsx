@@ -1,32 +1,22 @@
 // @ts-ignore
 import React from 'react';
 import './createAcc.scss';
-import './formElem.scss';
-import './isAdmin.scss';
-import './submit.scss';
+import '../../less/style.scss';
+import TextTypeComponent from '../../components/formComponents/textTypeComponent';
+import PassTypeComponent from '../../components/formComponents/passTypeComponent';
+import CheckTypeComponent from '../../components/formComponents/checkTypeComponent';
+import SubmitTypeComponent from '../../components/formComponents/submitTypeComponent';
 
 function CreateAcc() {
     return (
         <div className={"createAcc"}>
             <h2>Create your account</h2>
             <form>
-                <div className={"formElem"}>
-                    <label htmlFor={"userName"}>Username</label>
-                    <input type={"text"} id={"userName"} name={"userName"}/>
-                </div>
-                <div className={"formElem"}>
-                    <label htmlFor={"email"}>Email</label>
-                    <input type={"text"} id={"email"} name={"email"}/>
-                </div>
-                <div className={"formElem"}>
-                    <label htmlFor={"password"}>Password</label>
-                    <input type={"password"} id={"password"} name={"password"}/>
-                </div>
-                <div className={"isAdmin"}>
-                    <input type={"checkbox"} id={"isAdmin"} name={"isAdmin"}/>
-                    <label htmlFor={"isAdmin"}>is admin</label>
-                </div>
-                <input type={"submit"} id={"submit"} value={"Sign Up"}/>
+                <TextTypeComponent name={"Username"} />
+                <TextTypeComponent name={"email"} />
+                <PassTypeComponent />
+                <CheckTypeComponent/>
+                <SubmitTypeComponent name={"Sign Up"}/>
             </form>
         </div>
     );

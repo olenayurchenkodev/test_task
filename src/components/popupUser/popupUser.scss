@@ -1,0 +1,47 @@
+@import '../../less/variables.scss';
+@import '../../less/style.scss';
+*{box-sizing: border-box;}
+.popupBack{
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  .formButtons{
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.ModalContent{
+  position: fixed;
+  top: 10%;
+  left: 25%;
+  background: $white;
+  border: 1px solid $line;
+  box-sizing: border-box;
+  border-radius: 16px;
+  width: fit-content;
+  height: fit-content;
+  padding: 70px 175px;
+}
+.button{
+  width: 135px;
+  height: 56px;
+  background: $input_bg;
+  border-radius: 12px;
+  border: none;
+
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.75px;
+  color: $body;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

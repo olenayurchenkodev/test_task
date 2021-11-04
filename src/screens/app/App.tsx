@@ -2,17 +2,10 @@
 import React from 'react';
 import './app.scss';
 import Home from '../home/home';
-import {
-    Switch,
-    Route,
-    Link,
-    useRouteMatch
-} from "react-router-dom";
-import Welcome from '../welcome/welcome';
+import SignIn from '../signIn/signIn';
+import CreateAcc from '../createAcc/createAcc';
 
 function App(props) {
-    let { path, url } = useRouteMatch();
-
     return (
         <div>
             <Home/>
