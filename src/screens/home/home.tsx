@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 
 function Home() {
+    let { path, url } = useRouteMatch();
     let able: string = "nonactive";
 
     function HighlightLink({ label, to, active }) {
@@ -35,25 +36,25 @@ function Home() {
                 <UserAvatar status={"admin"} name={"1White"}/>
                 <ul>
                     <li className={"profiles"}>
-                        <HighlightLink to={"/profiles"} label={"Profiles"} active={true}/>
+                        <HighlightLink to={`${url}/profiles`} label={"Profiles"} active={true}/>
                     </li>
                     <li className={"dashboard"}>
-                        <HighlightLink to={"/dashboard"} label={"Dashboard"} active={true}/>
+                        <HighlightLink to={`${url}/dashboard`} label={"Dashboard"} active={true}/>
                     </li>
                     <li className={"users"}>
-                        <HighlightLink to={"/users"} label={"Users"} active={true}/>
+                        <HighlightLink to={`${url}/users`} label={"Users"} active={true}/>
                     </li>
                 </ul>
                 <p>Log out</p>
             </header>
             <Switch>
-                <Route exact path={`/profiles`}>
+                <Route path={`${path}/profiles`}>
                     <Profiles />
                 </Route>
-                <Route path="/users">
+                <Route path={`${path}/users`}>
                     <Users />
                 </Route>
-                <Route path="/dashboard">
+                <Route path={`${path}/dashboard`}>
                     <Dashboard />
                 </Route>
             </Switch>

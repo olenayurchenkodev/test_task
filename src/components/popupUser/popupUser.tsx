@@ -1,8 +1,5 @@
 import React, { SetStateAction, Dispatch} from "react";
-import TextTypeComponent from "../../components/formComponents/textTypeComponent";
-import RadioTypeComponent from '../../components/formComponents/radioTypeComponent';
 import './popupUser.scss';
-import SubmitTypeComponent from "../formComponents/submitTypeComponent";
 
 let click = false;
 
@@ -28,9 +25,27 @@ function PopupUser({state, setState}: StandardComponentProps) {
             {state?
                 <div className={"popupBack"} onClick={closePopup}>
                     <div  className={`ModalContent`} onClick={catchClick}>
-                        <TextTypeComponent name={"name"} />
-                        <TextTypeComponent name={"email"} />
-                        <RadioTypeComponent type={"role"}/>
+                        <div className={"formElem"}>
+                            <label htmlFor={"name"}>name:</label>
+                            <input type={"text"} id={"name"} name={"name"} />
+                        </div>
+                        <div className={"formElem"}>
+                            <label htmlFor={"email"}>email:</label>
+                            <input type={"text"} id={"email"} name={"email"} />
+                        </div>
+                        <div className={"formElem"}>
+                            <h4>role:</h4>
+                            <div className={"radio"}>
+                                <div>
+                                    <input type={"radio"} id={"admin"} name={"role"}/>
+                                    <label htmlFor={"admin"}>male</label>
+                                </div>
+                                <div className={"secondVar"}>
+                                    <input type={"radio"} id={"user"} name={"role"}/>
+                                    <label htmlFor={"user"}>user</label>
+                                </div>
+                            </div>
+                        </div>
                         <div className={"formButtons"}>
                             <button className={"button"}>✔</button>
                             <button className={"button"}>🞫</button>

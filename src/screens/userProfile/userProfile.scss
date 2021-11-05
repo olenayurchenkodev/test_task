@@ -1,8 +1,11 @@
 @import '../../less/variables.scss';
 @import '../../less/style.scss';
 .user_profiles{
-  .imgs{display: flex;
-  justify-content: center;}
+  .imgs{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
   h2{
     font-family: 'Poppins', sans-serif;
     text-align: left;

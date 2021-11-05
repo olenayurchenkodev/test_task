@@ -5,12 +5,13 @@ import {
     Switch,
     Route,
     Link,
-    useRouteMatch
+    useRouteMatch,
+    Redirect
 } from "react-router-dom";
 import CreateAcc from '../createAcc/createAcc';
 import SignIn from '../signIn/signIn';
 
-function Welcome(props) {
+function Welcome() {
     let { path, url } = useRouteMatch();
 
     return (
@@ -22,6 +23,7 @@ function Welcome(props) {
             <Switch>
                 <Route path={`${path}/createAcc`}><CreateAcc/></Route>
                 <Route path={`${path}/signIn`}><SignIn/></Route>
+                <Redirect to={`/welcome`}/>
             </Switch>
         </>
     );
