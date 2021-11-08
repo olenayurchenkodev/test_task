@@ -16,7 +16,6 @@ function UserProfile({username, useremail}: StandardComponentProps) {
 
     const openPopup = () =>{
         setState(prev => ! prev);
-        console.log(state);
     }
 
     return (

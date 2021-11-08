@@ -1,6 +1,8 @@
 // @ts-ignore
-import React from 'react';
+import React, { useContext } from 'react';
 import UserAvatar from '../../components/userAvatar/userAvatar';
+import {NavLink, useHistory} from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import './home.scss';
 import './listLinks.scss';
 import Users from '../users/users';
@@ -10,12 +12,16 @@ import {
     Switch,
     Route,
     Link,
-    useRouteMatch
+    useRouteMatch,
+    Redirect
 } from "react-router-dom";
+import Welcome from '../welcome/welcome';
 
 function Home() {
     let { path, url } = useRouteMatch();
     let able: string = "nonactive";
+    let history = useHistory();
+    const auth = useContext(AuthContext)
 
     function HighlightLink({ label, to, active }) {
         let match = useRouteMatch({
@@ -28,6 +34,12 @@ function Home() {
                 <Link className={`menuItem ${able}`} to={to}>{label}</Link>
             </div>
         );
+    }
+
+    const logoutHandler = event =>{
+        event.preventDefault()
+        auth.logout()
+        history.push('/welcome')
     }
 
     return (
@@ -45,7 +57,7 @@ function Home() {
                         <HighlightLink to={`${url}/users`} label={"Users"} active={true}/>
                     </li>
                 </ul>
-                <p>Log out</p>
+                <p onClick={logoutHandler}>Log out</p>
             </header>
             <Switch>
                 <Route path={`${path}/profiles`}>
@@ -57,6 +69,7 @@ function Home() {
                 <Route path={`${path}/dashboard`}>
                     <Dashboard />
                 </Route>
+                <Redirect to={`${path}/profiles`}/>
             </Switch>
         </>
     );

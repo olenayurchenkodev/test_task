@@ -18,3 +18,20 @@
     margin-left: 34%;
   }
 }
+.errorMessage{
+  position: fixed;
+  top: 10px;
+  margin: 30px;
+  padding: 20px;
+  background: $white;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  color: $red;
+  display: none;
+  border-bottom: 10px;
+}
+.able{
+  display: block;
+}

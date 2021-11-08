@@ -7,7 +7,7 @@ import App from "./screens/app/App";
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-        <App isAuthenteficated={true}/>
+        <App/>
       </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -6,29 +6,37 @@ import SignIn from '../signIn/signIn';
 import CreateAcc from '../createAcc/createAcc';
 import Welcome from '../welcome/welcome';
 import {Redirect, Route, Switch } from 'react-router-dom';
+import { useAuth} from '../../hooks/auth.hook';
+import { AuthContext} from '../../context/AuthContext';
 import Profiles from '../profiles/profiles';
 
-export interface StandardComponentProps{
-    isAuthenteficated: boolean
-}
 
-function App({isAuthenteficated}: StandardComponentProps) {
+
+function App() {
+    const {login, logout, token, userId} = useAuth()
+    const isAuthenteficated = !!token
+
     if (isAuthenteficated){
         return (
             <Switch>
-                <Route path={"/home"}>
-                    <Home/>
-                </Route>
-                <Redirect to={"/home"}/>
+                <AuthContext.Provider value={{
+                    token, login, logout, userId, isAuthenteficated
+                }}>
+                    <Route path={"/home"}>
+                        <Home/>
+                    </Route>
+                    <Redirect to={"/home"}/>
+                </AuthContext.Provider>
             </Switch>
         );
     }
     return (
         <div>
-            <Route path={"/welcome"}>
-                <Welcome/>
-            </Route>
-            <Redirect to={"/welcome"}/>
+            <AuthContext.Provider value={{token, login, logout, userId, isAuthenteficated}}>
+                <Route path={"/welcome"}>
+                    <Welcome/>
+                </Route>
+            </AuthContext.Provider>
         </div>
     );
 }
