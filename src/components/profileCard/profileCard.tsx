@@ -1,23 +1,39 @@
 // @ts-ignore
-import React, {useState } from 'react';
+import React, {useContext, useState } from 'react';
 import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
 import './deleteButt.scss';
 import PopupProfile from '../popupProfile/popupProfile';
+import { useHTTP } from '../../hooks/http.hook';
+import {Redirect, useParams } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export interface StandardComponentProps{
+    profile_id: string,
     name: string,
     sex: string,
     birthdate: string,
     location: string
 }
 
-function ProfileCard({name, sex, birthdate, location}: StandardComponentProps) {
+function ProfileCard({profile_id, name, sex, birthdate, location}: StandardComponentProps) {
+    const {loading, error, request} =useHTTP()
     const [state, setState] = useState(false)
 
     const openPopup = () =>{
         setState(prev => ! prev);
+    }
+    const {token} = useContext(AuthContext)
+    
+    const deleteProfile = async () => {
+        try {
+            const data = await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
+                Authorization: `Bearer ${token}`
+            } )
+            console.log(data)
+            return <Redirect to={'/home/profiles'}/>
+        } catch (e) {}
     }
 
     return (
@@ -32,8 +48,7 @@ function ProfileCard({name, sex, birthdate, location}: StandardComponentProps) {
                 <div className={"space"}/>
                 <div className={"buttons"}>
                     <button className={"edit"} onClick={openPopup}>edit</button>
-
-                    <button className={"delete"}>delete</button>
+                    <button className={"delete"} onClick={deleteProfile}>delete</button>
                 </div>
             </div>
             <PopupProfile state={state} setState={setState}/>

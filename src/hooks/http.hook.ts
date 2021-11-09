@@ -4,7 +4,7 @@ export const useHTTP = () =>{
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const request = useCallback(async (url, method = 'POST', body = null, headers = {}) =>{
+    const request = useCallback(async (url, method = 'PUT', body = null, headers = {}) =>{
         setLoading(true)
         try{
             if (body){
@@ -12,7 +12,7 @@ export const useHTTP = () =>{
                 headers['Content-Type'] ='application/json'
             }
 
-            const response = await fetch(url, { method, body , headers })
+            const response = await fetch(url, { method, body, headers })
             const data = await response.json()
 
             if (!response.ok){

@@ -11,9 +11,9 @@ function CreateAcc() {
     let history = useHistory();
     const {loading, error, request} =useHTTP()
     const [errors, setErrors] = useState('')
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState('off')
     const [form, setForm] = useState({
-        username: '', email: '', password: '', iaAdmin: isAdmin
+        username: '', email: '', password: '', isAdmin: isAdmin
     })
     const auth = useContext(AuthContext)
 
@@ -27,9 +27,15 @@ function CreateAcc() {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
-    const isAdminFunc = () => {
-        setIsAdmin(!isAdmin)
-        console.log(isAdmin)
+    const isAdminChanger = event => {
+        if (isAdmin === 'off'){
+            setIsAdmin('on')
+            setForm({...form,[event.target.name]:isAdmin})
+        }
+        else{
+            setIsAdmin('off')
+            setForm({...form,[event.target.name]:isAdmin})
+        }
     }
 
     const registerHandler = async () => {
@@ -48,14 +54,14 @@ function CreateAcc() {
                 </div>
                 <div className={`formElem`}>
                     <label htmlFor={"email"}>Email</label>
-                    <input type={"text"} id={`email`} name={"email"} onChange={changeHandler}/>
+                    <input type={"text"} id={`email`} name={"email"} value={form.email} onChange={changeHandler}/>
                 </div>
                 <div className={`formElem`}>
                     <label htmlFor={"password"}>password</label>
-                    <input type={"password"} id={"password"} name={"password"} onChange={changeHandler}/>
+                    <input type={"password"} id={"password"} name={"password"} value={form.password} onChange={changeHandler}/>
                 </div>
                 <div className={"isAdmin"}>
-                    <input type={"checkbox"} id={"isAdmin"} name={"isAdmin"} onClick={isAdminFunc} onChange={changeHandler}/>
+                    <input type={"checkbox"} id={"isAdmin"} name={"isAdmin"} onClick={isAdminChanger}/>
                     <label htmlFor={"isAdmin"}>is admin</label>
                 </div>
                 <button className={"submit"} onClick={registerHandler}>Sign Up</button>

@@ -30,10 +30,6 @@ function UserProfile({username, useremail}: StandardComponentProps) {
             </div>
             <h2>Profiles:</h2>
             <div className={"profile_set"}>
-                <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
-                <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
-                <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
-                <ProfileCard name={"Danylo Bilyi"} sex={"male"} birthdate={"25.03.2003"} location={"Kyiv"}/>
             </div>
             <PopupUser state={state} setState={setState}/>
         </div>

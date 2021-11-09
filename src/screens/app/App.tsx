@@ -18,26 +18,26 @@ function App() {
 
     if (isAuthenteficated){
         return (
-            <Switch>
-                <AuthContext.Provider value={{
-                    token, login, logout, userId, isAuthenteficated
-                }}>
+            <AuthContext.Provider value={{
+                token, login, logout, userId, isAuthenteficated
+            }}>
+                <Switch>
                     <Route path={"/home"}>
                         <Home/>
                     </Route>
                     <Redirect to={"/home"}/>
-                </AuthContext.Provider>
-            </Switch>
+
+                </Switch>
+            </AuthContext.Provider>
         );
     }
     return (
-        <div>
-            <AuthContext.Provider value={{token, login, logout, userId, isAuthenteficated}}>
-                <Route path={"/welcome"}>
-                    <Welcome/>
-                </Route>
-            </AuthContext.Provider>
-        </div>
+        <AuthContext.Provider value={{token, login, logout, userId, isAuthenteficated}}>
+            <Route path={"/welcome"}>
+                <Welcome/>
+            </Route>
+            <Redirect to={"/welcome"}/>
+        </AuthContext.Provider>
     );
 }
 
