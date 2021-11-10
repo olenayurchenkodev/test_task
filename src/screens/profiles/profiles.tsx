@@ -9,10 +9,10 @@ import {useHTTP} from '../../hooks/http.hook'
 
 function Profiles() {
     const [state, setState] = useState(false)
-    const [profile, setProfile] = useState('')
     const [profiles, setProfiles] = useState([])
-    const {loading, request} = useHTTP()
+    const {request} = useHTTP()
     const {token} = useContext(AuthContext)
+    
 
     const fetchLinks = useCallback(async () => {
         try {
@@ -47,7 +47,7 @@ function Profiles() {
                    )
                 })}
                 <div className={`add_profile`} onClick={openPopup}>
-                    <img src={new_profile}/>
+                    <img src={new_profile} alt={"Create profile"}/>
                     <p>Crearte new profile</p>
                 </div>
                 <PopupProfile state={state} setState={setState}/>

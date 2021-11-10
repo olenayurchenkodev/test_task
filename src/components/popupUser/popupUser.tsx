@@ -21,12 +21,12 @@ function PopupUser({state, setState}: StandardComponentProps) {
     }
 
     return (
-        <>
+        <form>
             {state?
                 <div className={"popupBack"} onClick={closePopup}>
                     <div  className={`ModalContent`} onClick={catchClick}>
                         <div className={"formElem"}>
-                            <label htmlFor={"name"}>name:</label>
+                            <label htmlFor={"name"}>username:</label>
                             <input type={"text"} id={"name"} name={"name"} />
                         </div>
                         <div className={"formElem"}>
@@ -38,7 +38,7 @@ function PopupUser({state, setState}: StandardComponentProps) {
                             <div className={"radio"}>
                                 <div>
                                     <input type={"radio"} id={"admin"} name={"role"}/>
-                                    <label htmlFor={"admin"}>male</label>
+                                    <label htmlFor={"admin"}>admin</label>
                                 </div>
                                 <div className={"secondVar"}>
                                     <input type={"radio"} id={"user"} name={"role"}/>
@@ -53,7 +53,7 @@ function PopupUser({state, setState}: StandardComponentProps) {
                     </div>
                 </div>
                 : null}
-        </>
+        </form>
     );
 }
 

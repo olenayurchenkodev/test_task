@@ -6,7 +6,7 @@ import './editButt.scss';
 import './deleteButt.scss';
 import PopupProfile from '../popupProfile/popupProfile';
 import { useHTTP } from '../../hooks/http.hook';
-import {Redirect, useParams } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export interface StandardComponentProps{
@@ -18,13 +18,21 @@ export interface StandardComponentProps{
 }
 
 function ProfileCard({profile_id, name, sex, birthdate, location}: StandardComponentProps) {
-    const {loading, error, request} =useHTTP()
+    const auth = useContext(AuthContext)
+    const {token} = useContext(AuthContext)
+    const {request} =useHTTP()
     const [state, setState] = useState(false)
 
+    const updateProfile = async () => {
+        await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
+            Authorization: `Bearer ${token}`
+        } )
+        openPopup()
+    }
+    
     const openPopup = () =>{
         setState(prev => ! prev);
     }
-    const {token} = useContext(AuthContext)
     
     const deleteProfile = async () => {
         try {
@@ -47,7 +55,7 @@ function ProfileCard({profile_id, name, sex, birthdate, location}: StandardCompo
                 </div>
                 <div className={"space"}/>
                 <div className={"buttons"}>
-                    <button className={"edit"} onClick={openPopup}>edit</button>
+                    <button className={"edit"} onClick={updateProfile}>edit</button>
                     <button className={"delete"} onClick={deleteProfile}>delete</button>
                 </div>
             </div>

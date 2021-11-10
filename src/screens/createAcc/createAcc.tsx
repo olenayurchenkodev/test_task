@@ -1,21 +1,21 @@
 // @ts-ignore
-import React, {useEffect, useState, useContext } from 'react';
-import {NavLink, useHistory} from 'react-router-dom';
+import React, {useContext, useEffect, useState} from 'react';
 import './createAcc.scss';
 import '../../less/style.scss';
 import '../../less/formComponent.scss';
 import { useHTTP } from '../../hooks/http.hook';
+import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 function CreateAcc() {
-    let history = useHistory();
-    const {loading, error, request} =useHTTP()
+    const {error, request} =useHTTP()
+    const auth = useContext(AuthContext)
+    let history = useHistory()
     const [errors, setErrors] = useState('')
     const [isAdmin, setIsAdmin] = useState('off')
     const [form, setForm] = useState({
         username: '', email: '', password: '', isAdmin: isAdmin
     })
-    const auth = useContext(AuthContext)
 
     useEffect(()=>{
         if (error){
@@ -27,20 +27,10 @@ function CreateAcc() {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
-    const isAdminChanger = event => {
-        if (isAdmin === 'off'){
-            setIsAdmin('on')
-            setForm({...form,[event.target.name]:isAdmin})
-        }
-        else{
-            setIsAdmin('off')
-            setForm({...form,[event.target.name]:isAdmin})
-        }
-    }
-
     const registerHandler = async () => {
         try {
             const data = await request(`http://localhost:3001/auth/register`, 'POST', {...form})
+            // console.log('data', data)
         } catch (e) {}
     }
 
@@ -61,7 +51,7 @@ function CreateAcc() {
                     <input type={"password"} id={"password"} name={"password"} value={form.password} onChange={changeHandler}/>
                 </div>
                 <div className={"isAdmin"}>
-                    <input type={"checkbox"} id={"isAdmin"} name={"isAdmin"} onClick={isAdminChanger}/>
+                    <input type={"checkbox"} id={"isAdmin"} name={"isAdmin"} onChange={changeHandler}/>
                     <label htmlFor={"isAdmin"}>is admin</label>
                 </div>
                 <button className={"submit"} onClick={registerHandler}>Sign Up</button>

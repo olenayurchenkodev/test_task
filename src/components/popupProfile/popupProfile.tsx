@@ -12,7 +12,7 @@ export interface StandardComponentProps{
 
 const PopupProfile = ({state, setState}: StandardComponentProps) => {
     const auth = useContext(AuthContext)
-    const {loading, error, request} =useHTTP()
+    const {request} =useHTTP()
     const [gender, setGender] = useState('')
     const [form, setForm] = useState({
         name: '', gender: '', birthdate: '', city: ''
@@ -30,13 +30,18 @@ const PopupProfile = ({state, setState}: StandardComponentProps) => {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
+    // const submit = event =>{
+    // }
+
     const profileHandler = async () => {
-        console.log('form',form)
+        // console.log('form',form)
         try {
             const data = await request(`http://localhost:3001/profile/generate`, 'POST', {...form}, {
                 Authorization: `Bearer ${auth.token}`
             })
-            console.log(data)
+            if (!data){
+                
+            }
         } catch (e) {}
     }
 

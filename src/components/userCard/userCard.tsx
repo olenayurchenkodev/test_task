@@ -3,15 +3,16 @@ import React from 'react';
 import './userCard.scss';
 
 export interface StandardComponentProps{
-    userName: string,
+    username: string,
     email: string,
+    isAdmin: string,
     profileNum: number
 }
 
-function UserCard({userName, email, profileNum}: StandardComponentProps) {
+function UserCard({username, email, profileNum}: StandardComponentProps) {
     return (
         <div className={"userCard"}>
-            <p className={"title"}>{userName}</p>
+            <p className={"title"}>{username}</p>
             <p>{email}</p>
             <p>{profileNum} profiles</p>
         </div>

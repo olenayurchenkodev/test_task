@@ -14,12 +14,11 @@
 }
 .users_set{
   display: flex;
-  flex-wrap: wrap;
   width: inherit;
   padding: 60px 0;
-  justify-content: space-between;
-  align-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .userItem:visited {
   color: $body;

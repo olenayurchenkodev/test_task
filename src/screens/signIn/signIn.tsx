@@ -1,7 +1,6 @@
 // @ts-ignore
 import React, {useContext, useEffect, useState } from 'react';
 import {useHTTP} from '../../hooks/http.hook';
-import {NavLink, useHistory} from 'react-router-dom';
 import '../../less/style.scss';
 import './signIn.scss';
 import './submit.scss';
@@ -9,7 +8,6 @@ import '../../less/formComponent.scss';
 import { AuthContext } from '../../context/AuthContext';
 
 function SignIn() {
-    let history = useHistory();
     const {loading, error, request} = useHTTP()
     const [errors, setErrors] = useState('')
     const [form, setForm] = useState({
@@ -33,7 +31,9 @@ function SignIn() {
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:3001/auth/login', 'POST', {...form})
-            auth.login(data.token, data.userId)
+            // console.log('isAdmin returned from back',data.isAdmin)
+            auth.login(data.token, data.userId, data.isAdmin)
+            // console.log('isAdmin returned from back',data.isAdmin)
         } catch (e) {}
     }
 

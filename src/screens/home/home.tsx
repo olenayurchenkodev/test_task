@@ -1,8 +1,10 @@
 // @ts-ignore
-import React, { useContext } from 'react';
+import React, {useCallback, useContext, useEffect, useState } from 'react';
 import UserAvatar from '../../components/userAvatar/userAvatar';
-import {NavLink, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth.hook';
+import { useHTTP } from '../../hooks/http.hook';
 import './home.scss';
 import './listLinks.scss';
 import Users from '../users/users';
@@ -15,13 +17,34 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
-import Welcome from '../welcome/welcome';
+
 
 function Home() {
-    let { path, url } = useRouteMatch();
-    let able: string = "nonactive";
-    let history = useHistory();
+    const [username, setUsername] = useState('')
+    let { path, url } = useRouteMatch()
+    let able: string = "nonactive"
+    let history = useHistory()
     const auth = useContext(AuthContext)
+    const {request} = useHTTP()
+    let adminStyle = ''
+    // console.log('isAfmin on page', auth.isAdminAuthenteficated)
+
+    if (auth.isAdminAuthenteficated){adminStyle = 'admin'}
+    const {token, userId} = useContext(AuthContext)
+
+    const fetchLinks = useCallback(async () => {
+        try {
+            console.log('userId is', userId)
+            const fetched = await request(`http://localhost:3001/auth/home`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            })
+            setUsername(fetched)
+        } catch (e) {}
+    }, [token, request])
+
+    useEffect(() => {
+        fetchLinks()
+    }, [fetchLinks])
 
     function HighlightLink({ label, to, active }) {
         let match = useRouteMatch({
@@ -45,17 +68,20 @@ function Home() {
     return (
         <>
             <header>
-                <UserAvatar status={"admin"} name={"1White"}/>
+                <UserAvatar status={adminStyle} name={username}/>
                 <ul>
                     <li className={"profiles"}>
                         <HighlightLink to={`${url}/profiles`} label={"Profiles"} active={true}/>
                     </li>
-                    <li className={"dashboard"}>
-                        <HighlightLink to={`${url}/dashboard`} label={"Dashboard"} active={true}/>
-                    </li>
-                    <li className={"users"}>
-                        <HighlightLink to={`${url}/users`} label={"Users"} active={true}/>
-                    </li>
+                    {auth.isAdminAuthenteficated && <>
+                        <li className={"dashboard"}>
+                            <HighlightLink to={`${url}/dashboard`} label={"Dashboard"} active={true}/>
+                        </li>
+                        <li className={"users"}>
+                            <HighlightLink to={`${url}/users`} label={"Users"} active={true}/>
+                        </li>
+                    </>}
+
                 </ul>
                 <p onClick={logoutHandler}>Log out</p>
             </header>
@@ -63,12 +89,14 @@ function Home() {
                 <Route path={`${path}/profiles`}>
                     <Profiles />
                 </Route>
-                <Route path={`${path}/users`}>
-                    <Users />
-                </Route>
-                <Route path={`${path}/dashboard`}>
-                    <Dashboard />
-                </Route>
+                {auth.isAdminAuthenteficated && <>
+                    <Route path={`${path}/users`}>
+                        <Users />
+                    </Route>
+                    <Route path={`${path}/dashboard`}>
+                        <Dashboard />
+                    </Route>
+                </>}
                 <Redirect to={`${path}/profiles`}/>
             </Switch>
         </>

@@ -4,16 +4,12 @@ import './welcome.scss';
 import {
     Switch,
     Route,
-    Link,
-    useRouteMatch,
-    Redirect
+    Link
 } from "react-router-dom";
 import CreateAcc from '../createAcc/createAcc';
 import SignIn from '../signIn/signIn';
 
 function Welcome() {
-    let { path, url } = useRouteMatch();
-
     return (
         <>
             <div className={"links"}>

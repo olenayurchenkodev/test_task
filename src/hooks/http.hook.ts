@@ -4,17 +4,17 @@ export const useHTTP = () =>{
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const request = useCallback(async (url, method = 'PUT', body = null, headers = {}) =>{
+    const request = useCallback(async (url, method = 'POST', body = null, headers = {}) =>{
         setLoading(true)
         try{
             if (body){
                 body = JSON.stringify(body)
                 headers['Content-Type'] ='application/json'
             }
-
             const response = await fetch(url, { method, body, headers })
+            // console.log('response', body)
             const data = await response.json()
-
+            // console.log('data.body',data.body)
             if (!response.ok){
                 throw new Error(data.method || "Incorrect data")
             }
