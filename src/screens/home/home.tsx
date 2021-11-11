@@ -1,40 +1,30 @@
 // @ts-ignore
 import React, {useCallback, useContext, useEffect, useState } from 'react';
-import UserAvatar from '../../components/userAvatar/userAvatar';
+import {Switch, Route, Link, useRouteMatch, Redirect} from "react-router-dom";
 import {useHistory} from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { useAuth } from '../../hooks/auth.hook';
 import { useHTTP } from '../../hooks/http.hook';
-import './home.scss';
-import './listLinks.scss';
+import UserAvatar from '../../components/userAvatar/userAvatar';
 import Users from './users/users';
 import Dashboard from './dashboard/dashboard';
 import Profiles from './profiles/profiles';
-import {
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    Redirect
-} from "react-router-dom";
+import './home.scss';
+import './listLinks.scss';
 
 
 function Home() {
-    const [username, setUsername] = useState('')
-    let { path, url } = useRouteMatch()
-    let able = ""
-    let history = useHistory()
     const auth = useContext(AuthContext)
     const {request} = useHTTP()
+    const {token} = useContext(AuthContext)
+    const [username, setUsername] = useState('')
+    let { path, url } = useRouteMatch()
+    let history = useHistory()
     let adminStyle = ''
-    // console.log('isAfmin on page', auth.isAdminAuthenteficated)
-
     if (auth.isAdminAuthenteficated){adminStyle = 'admin'}
-    const {token, userId} = useContext(AuthContext)
 
+    // get user from db
     const fetchLinks = useCallback(async () => {
         try {
-            // console.log('userId is', userId)
             const fetched = await request(`http://localhost:3001/auth/home`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             })
@@ -46,7 +36,7 @@ function Home() {
         fetchLinks()
     }, [fetchLinks])
 
-
+    // user logout
     const logoutHandler = event =>{
         event.preventDefault()
         auth.logout()
