@@ -1,5 +1,5 @@
-@import '../../less/variables.scss';
-@import '../../less/style.scss';
+@import 'src/less/variables.scss';
+@import 'src/less/style.scss';
 *{margin: 0;}
 header{
   ul{
@@ -9,8 +9,10 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    text-decoration: none;
   }
   li{
+    text-decoration: none;
     display: flex;
     text-align: right;
     margin-left: 50px;
@@ -24,24 +26,14 @@ header{
   }
 }
 .profiles::after{
-  content: url("./img/profile.svg");
+  content: url("../../less/img/profile.svg");
   margin-left: 8px;
 }
 .dashboard::after{
-  content: url("./img/dashboard.svg");
+  content: url("../../less/img/dashboard.svg");
   margin-left: 8px;
 }
 .users::after{
-  content: url("./img/users.svg");
+  content: url("../../less/img/users.svg");
   margin-left: 8px;
-}
-.menuItem:visited {
-  color: $body;
-}
-.menuItem{
-  text-decoration: none;
-  color: $body;
-}
-.active{
-  color: $title_active;
 }

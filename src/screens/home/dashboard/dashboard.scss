@@ -1,6 +1,6 @@
-@import '../../less/variables.scss';
-@import '../../less/style.scss';
-.user_screen{
+@import 'src/less/variables.scss';
+@import 'src/less/style.scss';
+.dashboard_screen{
   padding: 60px 120px;
   h2{
     font-family: 'Poppins', sans-serif;
@@ -12,17 +12,11 @@
     color: $title_active;
   }
 }
-.users_set{
+.dashboard_set{
   display: flex;
+  flex-wrap: wrap;
   width: inherit;
   padding: 60px 0;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.userItem:visited {
-  color: $body;
-}
-.userItem{
-  text-decoration: none;
+  align-content: space-between;
+  align-items: center;
 }

@@ -1,11 +1,11 @@
 // @ts-ignore
 import React, {useContext, useEffect, useState} from 'react';
 import './createAcc.scss';
-import '../../less/style.scss';
-import '../../less/formComponent.scss';
-import { useHTTP } from '../../hooks/http.hook';
+import '../../../less/style.scss';
+import '../../../less/formComponent.scss';
+import { useHTTP } from '../../../hooks/http.hook';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 
 function CreateAcc() {
     const {error, request} =useHTTP()

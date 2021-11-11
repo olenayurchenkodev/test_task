@@ -1,11 +1,11 @@
 // @ts-ignore
 import React, {useContext, useEffect, useState } from 'react';
-import {useHTTP} from '../../hooks/http.hook';
-import '../../less/style.scss';
+import {useHTTP} from '../../../hooks/http.hook';
+import '../../../less/style.scss';
 import './signIn.scss';
 import './submit.scss';
-import '../../less/formComponent.scss';
-import { AuthContext } from '../../context/AuthContext';
+import '../../../less/formComponent.scss';
+import { AuthContext } from '../../../context/AuthContext';
 
 function SignIn() {
     const {loading, error, request} = useHTTP()
@@ -31,9 +31,7 @@ function SignIn() {
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:3001/auth/login', 'POST', {...form})
-            // console.log('isAdmin returned from back',data.isAdmin)
             auth.login(data.token, data.userId, data.isAdmin)
-            // console.log('isAdmin returned from back',data.isAdmin)
         } catch (e) {}
     }
 

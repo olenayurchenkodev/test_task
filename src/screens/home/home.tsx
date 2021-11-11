@@ -7,9 +7,9 @@ import { useAuth } from '../../hooks/auth.hook';
 import { useHTTP } from '../../hooks/http.hook';
 import './home.scss';
 import './listLinks.scss';
-import Users from '../users/users';
-import Dashboard from '../dashboard/dashboard';
-import Profiles from '../profiles/profiles';
+import Users from './users/users';
+import Dashboard from './dashboard/dashboard';
+import Profiles from './profiles/profiles';
 import {
     Switch,
     Route,
@@ -22,7 +22,7 @@ import {
 function Home() {
     const [username, setUsername] = useState('')
     let { path, url } = useRouteMatch()
-    let able: string = "nonactive"
+    let able = ""
     let history = useHistory()
     const auth = useContext(AuthContext)
     const {request} = useHTTP()
@@ -34,7 +34,7 @@ function Home() {
 
     const fetchLinks = useCallback(async () => {
         try {
-            console.log('userId is', userId)
+            // console.log('userId is', userId)
             const fetched = await request(`http://localhost:3001/auth/home`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             })
@@ -46,18 +46,6 @@ function Home() {
         fetchLinks()
     }, [fetchLinks])
 
-    function HighlightLink({ label, to, active }) {
-        let match = useRouteMatch({
-            path: to,
-            exact: active
-        });
-
-        return (
-            <div className={match ? "active" : ""}>
-                <Link className={`menuItem ${able}`} to={to}>{label}</Link>
-            </div>
-        );
-    }
 
     const logoutHandler = event =>{
         event.preventDefault()
@@ -70,18 +58,17 @@ function Home() {
             <header>
                 <UserAvatar status={adminStyle} name={username}/>
                 <ul>
-                    <li className={"profiles"}>
-                        <HighlightLink to={`${url}/profiles`} label={"Profiles"} active={true}/>
+                    <li className={"header_item profiles"}>
+                        <Link to={`${url}/profiles`}><p>Profiles</p></Link>
                     </li>
                     {auth.isAdminAuthenteficated && <>
-                        <li className={"dashboard"}>
-                            <HighlightLink to={`${url}/dashboard`} label={"Dashboard"} active={true}/>
+                        <li className={"header_item dashboard"}>
+                            <Link to={`${url}/dashboard`}><p>Dashboard</p></Link>
                         </li>
-                        <li className={"users"}>
-                            <HighlightLink to={`${url}/users`} label={"Users"} active={true}/>
+                        <li className={"header_item users"}>
+                            <Link to={`${url}/users`}><p>Users</p></Link>
                         </li>
                     </>}
-
                 </ul>
                 <p onClick={logoutHandler}>Log out</p>
             </header>

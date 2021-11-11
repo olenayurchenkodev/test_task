@@ -6,7 +6,7 @@ import './editButt.scss';
 import './deleteButt.scss';
 import PopupProfile from '../popupProfile/popupProfile';
 import { useHTTP } from '../../hooks/http.hook';
-import {Redirect } from 'react-router-dom';
+import {Redirect, useHistory, useRouteMatch } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export interface StandardComponentProps{
@@ -14,14 +14,20 @@ export interface StandardComponentProps{
     name: string,
     sex: string,
     birthdate: string,
-    location: string
+    location: string,
+    owner: string
 }
 
-function ProfileCard({profile_id, name, sex, birthdate, location}: StandardComponentProps) {
+function ProfileCard({profile_id, name, sex, birthdate, location, owner}: StandardComponentProps) {
+    let { path, url } = useRouteMatch()
+    let history = useHistory()
     const auth = useContext(AuthContext)
     const {token} = useContext(AuthContext)
     const {request} =useHTTP()
     const [state, setState] = useState(false)
+    const [form, setForm] = useState({
+        name: name, gender: sex, birthdate: birthdate, city: location, userId: owner
+    })
 
     const updateProfile = async () => {
         await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
@@ -39,8 +45,10 @@ function ProfileCard({profile_id, name, sex, birthdate, location}: StandardCompo
             const data = await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
                 Authorization: `Bearer ${token}`
             } )
-            console.log(data)
-            return <Redirect to={'/home/profiles'}/>
+            // console.log(data)
+             if(data){
+                 history.go(0)
+             }
         } catch (e) {}
     }
 
@@ -59,7 +67,7 @@ function ProfileCard({profile_id, name, sex, birthdate, location}: StandardCompo
                     <button className={"delete"} onClick={deleteProfile}>delete</button>
                 </div>
             </div>
-            <PopupProfile state={state} setState={setState}/>
+            <PopupProfile form={form} setForm={setForm} state={state} setState={setState}/>
         </>
     );
 }

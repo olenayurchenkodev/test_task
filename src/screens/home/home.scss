@@ -1,8 +1,9 @@
-@import '../../less/variables.scss';
-@import '../../less/style.scss';
+@import 'src/less/variables.scss';
+@import 'src/less/style.scss';
 *{margin: 0;}
 header{
   padding: 10px 120px;
+  height: 70px;
   display: flex;
   box-shadow: 0 8px 16px rgba(17, 17, 17, 0.04);
   p{
@@ -20,5 +21,8 @@ header{
     color: $body;
     cursor: pointer;
   }
+}
+a:-webkit-any-link{
+  text-decoration: none;
 }
 

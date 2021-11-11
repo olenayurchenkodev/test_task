@@ -1,6 +1,6 @@
 // @ts-ignore
 import React from 'react';
-import avatar from './img/avatar.png';
+import avatar from '../../less/img/avatar.png';
 import './userAvatar.scss';
 
 export interface StandardComponentProps{

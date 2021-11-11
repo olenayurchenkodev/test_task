@@ -6,8 +6,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import CreateAcc from '../createAcc/createAcc';
-import SignIn from '../signIn/signIn';
+import CreateAcc from './createAcc/createAcc';
+import SignIn from './signIn/signIn';
 
 function Welcome() {
     return (

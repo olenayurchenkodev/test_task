@@ -12,13 +12,13 @@ import { AuthContext} from '../../context/AuthContext';
 function App() {
     const {login, logout, token, userId, isAdmin} = useAuth()
     const isUserAuthenteficated = !!token
-    console.log('isAdmin status', isAdmin)
+    // console.log('isAdmin status', isAdmin)
     let isAdminAuthenteficated = false
     if (isAdmin !== 'off'){
         isAdminAuthenteficated = true
     }
-     console.log('Admin',isAdminAuthenteficated)
-    console.log('User',isUserAuthenteficated)
+     // console.log('Admin',isAdminAuthenteficated)
+    // console.log('User',isUserAuthenteficated)
     if (isUserAuthenteficated){
         return (
             <AuthContext.Provider value={{
@@ -28,8 +28,7 @@ function App() {
                     <Route path={"/home"}>
                         <Home/>
                     </Route>
-                    <Redirect to={"/home"}/>
-
+                    <Redirect to={"/home/profiles"}/>
                 </Switch>
             </AuthContext.Provider>
         );

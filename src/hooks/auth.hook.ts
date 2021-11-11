@@ -9,7 +9,6 @@ export const useAuth = () => {
         setToken(jwtToken)
         setUserId(id)
         setIsAdmin(status)
-        // console.log('during login status',status)
         localStorage.setItem('userData', JSON.stringify({
             userId: id, token: jwtToken, isAdmin: status
         }))
