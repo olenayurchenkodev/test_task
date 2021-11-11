@@ -1,14 +1,16 @@
 // @ts-ignore
-import React, {useCallback, useContext, useEffect, useState } from 'react';
-import {Redirect, useHistory, useParams } from 'react-router-dom';
-import Edit from '../../../../less/img/Edit.svg';
-import Delete from '../../../../less/img/Delete.svg';
-import ProfileCard from '../../../../components/profileCard/profileCard';
-import './userProfile.scss';
-import PopupUser from '../../../../components/popupUser/popupUser';
-import { useHTTP } from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
+import React, {useCallback, useContext, useEffect, useState } from 'react'
+import {useHistory } from 'react-router-dom'
+import { AuthContext } from '../../../../context/AuthContext'
+import { useHTTP } from '../../../../hooks/http.hook'
+import ProfileCard from '../../../../components/cards/profileCard/profileCard'
+import PopupUser from '../../../../components/popups/popupUser/popupUser'
+import Delete from '../../../../less/img/Delete.svg'
+import Edit from '../../../../less/img/Edit.svg'
+import './userProfile.scss'
+import './userInfo.scss'
 
+// props interface
 export interface StandardComponentProps{
     username: string,
     useremail: string,
@@ -16,21 +18,17 @@ export interface StandardComponentProps{
 }
 
 function UserProfile({username, useremail, userid}: StandardComponentProps) {
-    const {request} = useHTTP()
-    let history = useHistory()
     const {token} = useContext(AuthContext)
+    const {request} = useHTTP()
     const [state, setState] = useState(false);
     const [profiles, setProfiles] = useState([])
-    const [profilesUserId, setProfilesUserId] = useState(''||null)
-    const [isAdmin, setIsAdmin] = useState('off')
+    const [isAdmin] = useState('off')
     const [form, setForm] = useState({
         id: userid, username: username, email: useremail, isAdmin: isAdmin
     })
+    let history = useHistory()
 
-    const openPopup = () =>{
-        setState(prev => ! prev);
-    }
-
+    // get profiles of user from db
     const fetchLinks = useCallback(async () => {
         try {
             const fetched = await request(`http://localhost:3001/profile/${userid}`, 'GET', null, {
@@ -38,12 +36,13 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             })
             setProfiles(fetched)
         } catch (e) {}
-    }, [token, request])
+    }, [token, request, userid])
 
     useEffect(() => {
         fetchLinks()
     }, [fetchLinks])
 
+    // delete user
     const deleteUser = async () => {
         try {
             const data = await request(`http://localhost:3001/users/`, 'DELETE', {key: userid}, {
@@ -54,6 +53,11 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             }
             // console.log(data)
         } catch (e) {}
+    }
+
+    // open popup user redaction
+    const openPopup = () =>{
+        setState(prev => ! prev);
     }
 
     return (
@@ -70,7 +74,6 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             <h2>Profiles:</h2>
             <div className={"profile_set"}>
                 {profiles.map((profile: any) => {
-                    {console.log(profile.owner)}
                     return (
                         <ProfileCard
                             key={profile._id}

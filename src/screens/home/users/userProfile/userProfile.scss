@@ -1,5 +1,6 @@
 @import 'src/less/variables';
 @import 'src/less/style';
+
 .user_profiles{
   .imgs{
     display: flex;
@@ -15,34 +16,6 @@
     line-height: 34px;
     letter-spacing: 1px;
     color: $title_active;
-  }
-  .user_info{
-    padding: 40px;
-    h3{
-      margin: 20px;
-      font-family: 'Poppins', sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 32px;
-      line-height: 48px;
-      letter-spacing: 1px;
-      text-align: center;
-      color: $title_active;
-    }
-    p{
-      font-family: 'Poppins', sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      text-align: center;
-      font-size: 24px;
-      line-height: 36px;
-      letter-spacing: 1px;
-      color: $title_active;
-    }
-    img{
-      text-align: center;
-      padding: 30px;
-    }
   }
 }
 .profile_set{

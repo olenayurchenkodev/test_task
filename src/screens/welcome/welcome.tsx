@@ -1,13 +1,10 @@
 // @ts-ignore
-import React from 'react';
-import './welcome.scss';
-import {
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {Switch,Route,Link} from "react-router-dom";
 import CreateAcc from './createAcc/createAcc';
 import SignIn from './signIn/signIn';
+import React from 'react';
+import './welcome.scss';
+
 
 function Welcome() {
     return (

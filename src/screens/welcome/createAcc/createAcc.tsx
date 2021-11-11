@@ -1,35 +1,37 @@
 // @ts-ignore
-import React, {useContext, useEffect, useState} from 'react';
-import './createAcc.scss';
-import '../../../less/style.scss';
-import '../../../less/formComponent.scss';
+import React, { useEffect, useState} from 'react';
 import { useHTTP } from '../../../hooks/http.hook';
-import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthContext';
+import '../../../less/formComponent.scss';
+import '../../../less/style.scss';
+import './createAcc.scss';
+
 
 function CreateAcc() {
     const {error, request} =useHTTP()
-    const auth = useContext(AuthContext)
-    let history = useHistory()
     const [errors, setErrors] = useState('')
-    const [isAdmin, setIsAdmin] = useState('off')
+    const [isAdmin] = useState('off')
     const [form, setForm] = useState({
         username: '', email: '', password: '', isAdmin: isAdmin
     })
 
+    // error message
     useEffect(()=>{
         if (error){
             setErrors('able')
         }
+        setTimeout(()=>{
+            setErrors('')
+        }, 1000)
     }, [error])
 
+    // form fiald change
     const changeHandler = event =>{
         setForm({...form, [event.target.name]: event.target.value})
     }
-
+    
     const registerHandler = async () => {
         try {
-            const data = await request(`http://localhost:3001/auth/register`, 'POST', {...form})
+            await request(`http://localhost:3001/auth/register`, 'POST', {...form})
             // console.log('data', data)
         } catch (e) {}
     }

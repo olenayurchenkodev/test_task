@@ -2,6 +2,7 @@
 import React from 'react';
 import './userCard.scss';
 
+// props interface
 export interface StandardComponentProps{
     username: string,
     email: string,
@@ -20,4 +21,3 @@ function UserCard({username, email, profileNum}: StandardComponentProps) {
 }
 
 export default UserCard;
-//<UserCard userName={"1White"} email={"mail@mail.com"} profileNum={3}/>

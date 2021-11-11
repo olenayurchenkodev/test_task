@@ -1,20 +1,22 @@
 // @ts-ignore
 import React, {useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 import {useHTTP} from '../../../hooks/http.hook';
+import '../../../less/formComponent.scss';
 import '../../../less/style.scss';
 import './signIn.scss';
 import './submit.scss';
-import '../../../less/formComponent.scss';
-import { AuthContext } from '../../../context/AuthContext';
+
 
 function SignIn() {
     const {loading, error, request} = useHTTP()
+    const auth = useContext(AuthContext)
     const [errors, setErrors] = useState('')
     const [form, setForm] = useState({
         email: '', password: ''
     })
-    const auth = useContext(AuthContext)
 
+    // error message
     useEffect(()=>{
         if (error){
             setErrors('able')
@@ -24,10 +26,12 @@ function SignIn() {
         }, 1000)
     }, [error])
 
+    // change form fields
     const changeHandler = event =>{
         setForm({...form, [event.target.name]: event.target.value})
     }
 
+    // login
     const loginHandler = async () => {
         try {
             const data = await request('http://localhost:3001/auth/login', 'POST', {...form})

@@ -1,10 +1,9 @@
-import React, { SetStateAction, Dispatch, useState, useContext} from "react";
-import { Redirect, useRouteMatch } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { useHTTP } from "../../hooks/http.hook";
-import './popupUser.scss';
-
-let click = false;
+import React, { SetStateAction, Dispatch, useContext} from "react"
+import { Redirect, useRouteMatch } from "react-router-dom"
+import { AuthContext } from "../../../context/AuthContext"
+import { useHTTP } from "../../../hooks/http.hook"
+import './popupUser.scss'
+import '../popupProfile/modal.scss'
 
 export interface StandardComponentProps{
     form: any,
@@ -14,36 +13,34 @@ export interface StandardComponentProps{
 }
 
 function PopupUser({form, setForm, state, setState}: StandardComponentProps) {
-    let { path, url } = useRouteMatch()
     const {request} = useHTTP()
     const auth = useContext(AuthContext)
-    const [isAdmin, setIsAdmin] = useState('off')
+    let { path} = useRouteMatch()
+    let click = false;
 
     const changeHandler = event =>{
         setForm({...form, [event.target.name]: event.target.value})
     }
 
+    // update user
     const userHandler = async () => {
-        setForm({...form})
-        // console.log('form',form)
         try {
             const data = await request(`http://localhost:3001/users/update`, 'POST', {...form}, {
                 Authorization: `Bearer ${auth.token}`
             })
-
             if (data){
                 return <Redirect to={`${path}/users/userProfile`}/>
             }
         } catch (e) {}
     }
 
+    // close popup
     const closePopup = () => {
         if (!click){
             setState(prev => ! prev);
         }
         click = false;
     }
-
     const catchClick = () => {
         click = true;
     }

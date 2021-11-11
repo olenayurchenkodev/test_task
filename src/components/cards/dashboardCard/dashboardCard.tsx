@@ -2,6 +2,7 @@
 import React from 'react';
 import './dashboardCard.scss';
 
+// props interface
 export interface StandardComponentProps {
     dataType: string,
     data: number
@@ -16,6 +17,4 @@ function DashboardCard({dataType, data}: StandardComponentProps) {
     );
 }
 
-
 export default DashboardCard;
-//<DashboardCard dataType={"Profiles over 18 years old"} data={29}/>

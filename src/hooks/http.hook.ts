@@ -12,9 +12,7 @@ export const useHTTP = () =>{
                 headers['Content-Type'] ='application/json'
             }
             const response = await fetch(url, { method, body, headers })
-            // console.log('response', body)
             const data = await response.json()
-            // console.log('data.body',data.body)
             if (!response.ok){
                 throw new Error(data.method || "Incorrect data")
             }

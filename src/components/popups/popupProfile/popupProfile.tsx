@@ -1,8 +1,9 @@
-import React, { SetStateAction, Dispatch, useState, useContext} from "react";
-import { useHTTP } from "../../hooks/http.hook";
+import React, { SetStateAction, Dispatch, useContext} from "react";
+import { useHTTP } from "../../../hooks/http.hook";
 import './popupProfile.scss';
-import { AuthContext } from "../../context/AuthContext";
-import {Redirect, useHistory, useRouteMatch } from "react-router-dom";
+import '../../../less/typedInputs.scss';
+import { AuthContext } from "../../../context/AuthContext";
+import {Redirect, useRouteMatch } from "react-router-dom";
 
 let click = false;
 
@@ -15,19 +16,16 @@ export interface StandardComponentProps{
 }
 
 const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) => {
-    let { path, url } = useRouteMatch()
+    let { path } = useRouteMatch()
     const auth = useContext(AuthContext)
     const {request} =useHTTP()
-    let history = useHistory()
-    const [sex, setSex] = useState('male')
 
     const closePopup = () => {
         if (!click){
             setState(prev => ! prev);
         }click = false;
     }
-    const catchClick = () => {click = true;}
-
+    const catchClick = () => {click = true}
     const changeHandler = event =>{
         setForm({...form, [event.target.name]: event.target.value})
     }
@@ -48,7 +46,7 @@ const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) 
         {state?
             <div className={"popupBack"} onClick={closePopup}>
                 <div  className={`ModalContent`} onClick={catchClick}>
-                    <>
+                    <form>
                         <div className={"formElem"}>
                             <label htmlFor={"name"}>name:</label>
                             <input
@@ -107,7 +105,7 @@ const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) 
                             <button className={"button"} onClick={profileHandler}>✔</button>
                             <button className={"button"} onClick={closePopup}>🞫</button>
                         </div>
-                    </>
+                    </form>
                 </div>
             </div>
             : null}

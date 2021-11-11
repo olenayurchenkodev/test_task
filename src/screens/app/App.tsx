@@ -1,24 +1,22 @@
 // @ts-ignore
-import React from 'react';
-import './app.scss';
-import Home from '../home/home';
-import Welcome from '../welcome/welcome';
-import {Redirect, Route, Switch } from 'react-router-dom';
-import { useAuth} from '../../hooks/auth.hook';
-import { AuthContext} from '../../context/AuthContext';
-
+import {Redirect, Route, Switch } from 'react-router-dom'
+import { AuthContext} from '../../context/AuthContext'
+import { useAuth} from '../../hooks/auth.hook'
+import Welcome from '../welcome/welcome'
+import Home from '../home/home'
+import React from 'react'
+import './app.scss'
 
 
 function App() {
     const {login, logout, token, userId, isAdmin} = useAuth()
     const isUserAuthenteficated = !!token
-    // console.log('isAdmin status', isAdmin)
     let isAdminAuthenteficated = false
     if (isAdmin !== 'off'){
         isAdminAuthenteficated = true
     }
-     // console.log('Admin',isAdminAuthenteficated)
-    // console.log('User',isUserAuthenteficated)
+    
+    // Authenteficated
     if (isUserAuthenteficated){
         return (
             <AuthContext.Provider value={{
@@ -33,6 +31,8 @@ function App() {
             </AuthContext.Provider>
         );
     }
+
+    // not Authenteficated
     return (
         <AuthContext.Provider value={{
             token, login, logout, userId, isAdminAuthenteficated, isUserAuthenteficated

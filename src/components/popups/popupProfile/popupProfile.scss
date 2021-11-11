@@ -1,0 +1,18 @@
+@import 'src/less/variables';
+@import 'src/less/style';
+
+*{box-sizing: border-box;}
+.popupBack{
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  .formButtons{
+    display: flex;
+    justify-content: space-around;
+  }
+}

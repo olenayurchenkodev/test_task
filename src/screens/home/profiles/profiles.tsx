@@ -1,22 +1,23 @@
 // @ts-ignore
-import React, {useCallback, useContext, useEffect, useState } from 'react';
-import ProfileCard from '../../../components/profileCard/profileCard';
-import './profiles.scss';
-import new_profile from '../../../less/img/new_profile.svg';
-import PopupProfile from '../../../components/popupProfile/popupProfile';
-import { AuthContext } from '../../../context/AuthContext';
+import React, {useCallback, useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../context/AuthContext'
 import {useHTTP} from '../../../hooks/http.hook'
+import PopupProfile from '../../../components/popups/popupProfile/popupProfile'
+import ProfileCard from '../../../components/cards/profileCard/profileCard'
+import new_profile from '../../../less/img/new_profile.svg'
+import './profiles.scss'
+import './addProfile.scss'
 
 function Profiles() {
+    const {token, userId} = useContext(AuthContext)
+    const {request} = useHTTP()
     const [state, setState] = useState(false)
     const [profiles, setProfiles] = useState([])
-    const {request} = useHTTP()
-    const {token, userId} = useContext(AuthContext)
     const [form, setForm] = useState({
         name: '', gender: '', birthdate: '', city: '', userId: userId
     })
-    
 
+    // get profiles from db
     const fetchLinks = useCallback(async () => {
         try {
             const fetched = await request('http://localhost:3001/profile', 'GET', null, {
@@ -26,13 +27,14 @@ function Profiles() {
         } catch (e) {}
     }, [token, request])
 
-    const openPopup = () =>{
-        setState(prev => ! prev);
-    }
-
     useEffect(() => {
         fetchLinks()
     }, [fetchLinks])
+
+    // popup open
+    const openPopup = () =>{
+        setState(prev => ! prev);
+    }
 
     return (
         <div className={"profile_screen"}>

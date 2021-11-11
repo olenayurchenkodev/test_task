@@ -1,27 +1,23 @@
 // @ts-ignore
 import React, {useCallback, useContext, useEffect, useState } from 'react';
-import UserCard from '../../../components/userCard/userCard';
-import './users.scss';
-import {
-    Switch,
-    Route,
-    Link,
-    useRouteMatch
-} from "react-router-dom";
-import UserProfile from './userProfile/userProfile';
+import {Switch, Route, Link, useRouteMatch} from "react-router-dom";
 import { AuthContext } from '../../../context/AuthContext';
 import { useHTTP } from '../../../hooks/http.hook';
+import UserCard from '../../../components/cards/userCard/userCard';
+import UserProfile from './userProfile/userProfile';
+import './users.scss';
+
 
 function Users(props) {
     const {request} = useHTTP()
+    const {token} = useContext(AuthContext)
     const [users, setUsers] = useState([])
     const [userId, setUserId] = useState('')
     const [userName, setUserName] = useState('')
     const [userEmail, setUserEmail] = useState('')
-    const {token} = useContext(AuthContext)
     let { path, url } = useRouteMatch()
-    let userid = '';let usermail = '';let username = ''
 
+    // get users from db
     const fetchLinks = useCallback(async () => {
         try {
             const fetched = await request('http://localhost:3001/users', 'GET', null, {
@@ -42,9 +38,6 @@ function Users(props) {
                     <h2>Users:</h2>
                     <div className={"users_set"}>
                         {users.map((user: any) => {
-                            userid = user._id
-                            usermail = user.email
-                            username = user.username
                             return (
                                 <Link
                                     to={`${url}/userProfile/${user._id}`}

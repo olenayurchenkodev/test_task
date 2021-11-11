@@ -3,6 +3,7 @@ import React from 'react';
 import avatar from '../../less/img/avatar.png';
 import './userAvatar.scss';
 
+//props interface
 export interface StandardComponentProps{
     status: string,
     name: string

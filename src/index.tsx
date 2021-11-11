@@ -1,8 +1,9 @@
 // @ts-ignore
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import App from "./screens/app/App";
+import React from 'react';
+
 
 ReactDOM.render(
   <React.StrictMode>
