@@ -1,46 +1,36 @@
 // @ts-ignore
-import {Redirect, Route, Switch } from 'react-router-dom'
+import {BrowserRouter as Router,Redirect, Route, Switch, useRouteMatch} from 'react-router-dom'
 import { AuthContext} from '../../context/AuthContext'
+import {PathContext} from "../../context/PathContext";
 import { useAuth} from '../../hooks/auth.hook'
-import Welcome from '../welcome/welcome'
 import Home from '../home/home'
 import React from 'react'
 import './app.scss'
+import {useRoutes} from "../../router/routes";
 
 
 function App() {
     const {login, logout, token, userId, isAdmin} = useAuth()
-    const isUserAuthenteficated = !!token
-    let isAdminAuthenteficated = false
+    const isUserAuthenticated = !!token
+    const path = '/home'
+    let isAdminAuthenticated = false
+    const routes = useRoutes(isUserAuthenticated)
     if (isAdmin !== 'off'){
-        isAdminAuthenteficated = true
-    }
-    
-    // Authenteficated
-    if (isUserAuthenteficated){
-        return (
-            <AuthContext.Provider value={{
-                token, login, logout, userId, isAdminAuthenteficated, isUserAuthenteficated
-            }}>
-                <Switch>
-                    <Route path={"/home"}>
-                        <Home/>
-                    </Route>
-                    <Redirect to={"/home/profiles"}/>
-                </Switch>
-            </AuthContext.Provider>
-        );
+        isAdminAuthenticated = true
     }
 
-    // not Authenteficated
     return (
         <AuthContext.Provider value={{
-            token, login, logout, userId, isAdminAuthenteficated, isUserAuthenteficated
+            token, login, logout, userId, isAdminAuthenticated, isUserAuthenticated
         }}>
-            <Route path={"/welcome"}>
-                <Welcome/>
-            </Route>
-            <Redirect to={"/welcome"}/>
+            <PathContext.Provider value={{path}}>
+                <Router>
+                    { isUserAuthenticated && <Home /> }
+                    <div>
+                        {routes}
+                    </div>
+                </Router>
+            </PathContext.Provider>
         </AuthContext.Provider>
     );
 }

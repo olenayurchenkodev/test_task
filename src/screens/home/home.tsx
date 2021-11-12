@@ -1,6 +1,6 @@
 // @ts-ignore
-import React, {useCallback, useContext, useEffect, useState } from 'react';
-import {Switch, Route, Link, useRouteMatch, Redirect} from "react-router-dom";
+import React, {Dispatch, SetStateAction, useCallback, useContext, useEffect, useState} from 'react';
+import {Switch, Route, NavLink, useRouteMatch, Redirect} from "react-router-dom";
 import {useHistory} from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useHTTP } from '../../hooks/http.hook';
@@ -10,18 +10,19 @@ import Dashboard from './dashboard/dashboard';
 import Profiles from './profiles/profiles';
 import './home.scss';
 import './listLinks.scss';
+import {PathContext} from "../../context/PathContext";
 
 
-function Home() {
+const Home = ()  =>{
     const auth = useContext(AuthContext)
     const {request} = useHTTP()
     const {token} = useContext(AuthContext)
+    let {path} = useContext(PathContext)
     const [username, setUsername] = useState('')
-    let { path, url } = useRouteMatch()
     let history = useHistory()
     let adminStyle = ''
-    if (auth.isAdminAuthenteficated){adminStyle = 'admin'}
-
+    if (auth.isAdminAuthenticated){adminStyle = 'admin'}
+    console.log('home',path)
     // get user from db
     const fetchLinks = useCallback(async () => {
         try {
@@ -49,33 +50,19 @@ function Home() {
                 <UserAvatar status={adminStyle} name={username}/>
                 <ul>
                     <li className={"header_item profiles"}>
-                        <Link to={`${url}/profiles`}><p>Profiles</p></Link>
+                        <NavLink to={`/home/profiles`} onClick={()=>{path = '/home/profiles'}}><p>Profiles</p></NavLink>
                     </li>
-                    {auth.isAdminAuthenteficated && <>
+                    {auth.isAdminAuthenticated && <>
                         <li className={"header_item dashboard"}>
-                            <Link to={`${url}/dashboard`}><p>Dashboard</p></Link>
+                            <NavLink to={`/home/dashboard`}  onClick={()=>{path = '/home/dashboard'}}><p>Dashboard</p></NavLink>
                         </li>
                         <li className={"header_item users"}>
-                            <Link to={`${url}/users`}><p>Users</p></Link>
+                            <NavLink to={`/home/users`}  onClick={()=>{path = '/home/users'}}><p>Users</p></NavLink>
                         </li>
                     </>}
                 </ul>
                 <p onClick={logoutHandler}>Log out</p>
             </header>
-            <Switch>
-                <Route path={`${path}/profiles`}>
-                    <Profiles />
-                </Route>
-                {auth.isAdminAuthenteficated && <>
-                    <Route path={`${path}/users`}>
-                        <Users />
-                    </Route>
-                    <Route path={`${path}/dashboard`}>
-                        <Dashboard />
-                    </Route>
-                </>}
-                <Redirect to={`${path}/profiles`}/>
-            </Switch>
         </>
     );
 }

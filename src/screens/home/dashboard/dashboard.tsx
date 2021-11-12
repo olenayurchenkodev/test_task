@@ -16,7 +16,7 @@ function Dashboard() {
     // get statistic from db
     const fetchLinks = useCallback(async () => {
         try {
-            const users = await request(`http://localhost:3001/users/statistic`, 'GET', null, {
+            const users = await request(`http://localhost:3001/statistic`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             })
             setUsersNumber(users.length)
@@ -45,14 +45,16 @@ function Dashboard() {
 
     // rendering
     return (
-        <div className={"dashboard_screen"}>
-            <h2>Dashboard:</h2>
-            <div className={"dashboard_set"}>
-                <DashboardCard dataType={"Users"} data={usersNumber}/>
-                <DashboardCard dataType={"Profiles"} data={profilesNumber}/>
-                <DashboardCard dataType={"Profiles over 18 years old"} data={profilesOverNumber}/>
+        <>
+            <div className={"dashboard_screen"}>
+                <h2>Dashboard:</h2>
+                <div className={"dashboard_set"}>
+                    <DashboardCard dataType={"Users"} data={usersNumber}/>
+                    <DashboardCard dataType={"Profiles"} data={profilesNumber}/>
+                    <DashboardCard dataType={"Profiles over 18 years old"} data={profilesOverNumber}/>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

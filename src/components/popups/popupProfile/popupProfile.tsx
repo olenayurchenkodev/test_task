@@ -3,7 +3,6 @@ import { useHTTP } from "../../../hooks/http.hook";
 import './popupProfile.scss';
 import '../../../less/typedInputs.scss';
 import { AuthContext } from "../../../context/AuthContext";
-import {Redirect, useRouteMatch } from "react-router-dom";
 
 let click = false;
 
@@ -16,7 +15,6 @@ export interface StandardComponentProps{
 }
 
 const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) => {
-    let { path } = useRouteMatch()
     const auth = useContext(AuthContext)
     const {request} =useHTTP()
 
@@ -32,12 +30,15 @@ const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) 
 
     const profileHandler = async () => {
         try {
-            const data = await request(`http://localhost:3001/profile/generate`, 'POST', {...form}, {
+            if (form.profile_id){
+                await request(`http://localhost:3001/profile/`, 'DELETE', form.profile_id, {
+                    Authorization: `Bearer ${auth.token}`
+                } )
+            }
+            await request(`http://localhost:3001/profile/generate`, 'POST', {...form}, {
                 Authorization: `Bearer ${auth.token}`
             })
-            if (data){
-                return <Redirect to={`${path}/profiles`}/>
-            }
+
         } catch (e) {}
     }
 

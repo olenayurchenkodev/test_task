@@ -1,7 +1,8 @@
 // @ts-ignore
 import React, {useCallback, useContext, useEffect, useState } from 'react';
-import {Switch, Route, Link, useRouteMatch} from "react-router-dom";
+import {Switch, Route, Link, useRouteMatch, Redirect, useHistory, useLocation} from "react-router-dom";
 import { AuthContext } from '../../../context/AuthContext';
+import { UserContext} from "../../../context/UserContext";
 import { useHTTP } from '../../../hooks/http.hook';
 import UserCard from '../../../components/cards/userCard/userCard';
 import UserProfile from './userProfile/userProfile';
@@ -11,11 +12,11 @@ import './users.scss';
 function Users(props) {
     const {request} = useHTTP()
     const {token} = useContext(AuthContext)
+    let { path, url} = useRouteMatch()
     const [users, setUsers] = useState([])
     const [userId, setUserId] = useState('')
     const [userName, setUserName] = useState('')
     const [userEmail, setUserEmail] = useState('')
-    let { path, url } = useRouteMatch()
 
     // get users from db
     const fetchLinks = useCallback(async () => {
@@ -24,6 +25,9 @@ function Users(props) {
                 Authorization: `Bearer ${token}`
             })
             setUsers(fetched)
+            if (fetched){
+
+            }
         } catch (e) {}
     }, [token, request])
 
@@ -60,12 +64,14 @@ function Users(props) {
                         })}
                     </div>
                 </Route>
-                <Route path={`${path}/userProfile/${userId}`}>
-                    <UserProfile 
-                        username={userName} 
-                        useremail={userEmail} 
-                        userid={userId}/>
-                </Route>
+                <UserContext.Provider value={{userName, userEmail, userId}}>
+                    <Route path={`${path}/userProfile/${userId}`}>
+                        <UserProfile
+                            username={userName}
+                            useremail={userEmail}
+                            userid={userId}/>
+                    </Route>
+                </UserContext.Provider>
             </Switch>
         </div>
     );

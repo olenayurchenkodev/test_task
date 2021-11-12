@@ -1,5 +1,5 @@
 import React, { SetStateAction, Dispatch, useContext} from "react"
-import { Redirect, useRouteMatch } from "react-router-dom"
+import {Redirect, useHistory, useRouteMatch} from "react-router-dom"
 import { AuthContext } from "../../../context/AuthContext"
 import { useHTTP } from "../../../hooks/http.hook"
 import './popupUser.scss'
@@ -17,6 +17,7 @@ function PopupUser({form, setForm, state, setState}: StandardComponentProps) {
     const auth = useContext(AuthContext)
     let { path} = useRouteMatch()
     let click = false;
+    let history = useHistory()
 
     const changeHandler = event =>{
         setForm({...form, [event.target.name]: event.target.value})
@@ -28,9 +29,7 @@ function PopupUser({form, setForm, state, setState}: StandardComponentProps) {
             const data = await request(`http://localhost:3001/users/update`, 'POST', {...form}, {
                 Authorization: `Bearer ${auth.token}`
             })
-            if (data){
-                return <Redirect to={`${path}/users/userProfile`}/>
-            }
+            history.push('/home/users/profiles')
         } catch (e) {}
     }
 

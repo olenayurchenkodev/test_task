@@ -1,9 +1,10 @@
 // @ts-ignore
-import {useHistory} from 'react-router-dom';
+import {useHistory, useRouteMatch} from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import React, {useContext, useState } from 'react';
 import { useHTTP } from '../../../hooks/http.hook';
 import PopupProfile from '../../popups/popupProfile/popupProfile';
+import Loader from '../../loader/loader'
 import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
@@ -21,18 +22,16 @@ export interface StandardComponentProps{
 
 function ProfileCard({profile_id, name, sex, birthdate, location, owner}: StandardComponentProps) {
     const {token} = useContext(AuthContext)
-    const {request} =useHTTP()
+    const {loading, request} =useHTTP()
+    let { path, url} = useRouteMatch()
     const [state, setState] = useState(false)
     const [form, setForm] = useState({
-        name: name, gender: sex, birthdate: birthdate, city: location, userId: owner
+        name: name, gender: sex, birthdate: birthdate, city: location, userId: owner, profile_id: profile_id
     })
     let history = useHistory()
 
     // update profile
     const updateProfile = async () => {
-        await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
-            Authorization: `Bearer ${token}`
-        } )
         openPopup()
     }
     
@@ -43,9 +42,14 @@ function ProfileCard({profile_id, name, sex, birthdate, location, owner}: Standa
                 Authorization: `Bearer ${token}`
             } )
             // console.log(data)
-             if(data){
-                 history.go(0)
-             }
+            if (!loading) {
+                if (url === '/home/profiles'){
+                    history.go(0)
+                }
+                else{ history.go(-1) }
+
+
+            }
         } catch (e) {}
     }
 
