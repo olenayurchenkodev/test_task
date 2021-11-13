@@ -9,6 +9,7 @@ import Delete from '../../../../less/img/Delete.svg'
 import Edit from '../../../../less/img/Edit.svg'
 import './userProfile.scss'
 import './userInfo.scss'
+import Profiles from "../../profiles/profiles";
 
 // props interface
 export interface StandardComponentProps{
@@ -32,6 +33,18 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
     })
     let history = useHistory()
 
+    // get profiles of user from db
+    const fetchLinks = useCallback(async () => {
+        try {
+            const fetched = await request(`http://localhost:3001/profile`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            })
+            setProfiles(fetched)
+
+        } catch (e) {}
+    }, [token, request])
+
+
     const userInfo = useCallback(async () => {
         try {
             const user = await request(
@@ -39,31 +52,18 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
                 'GET', null, {
                 Authorization: `Bearer ${token}`
             })
+            console.log('user is ',user)
             setUserName(user.username)
             setUserEmail(user.email)
             setUserId(user._id)
-
             fetchLinks()
 
         } catch (e) {}
-    }, [token, request])
+    }, [fetchLinks, request, token, userId])
 
     useEffect(() => {
         userInfo()
     }, [userInfo])
-
-
-    // get profiles of user from db
-    const fetchLinks = useCallback(async () => {
-        try {
-            console.log(userId)
-            const fetched = await request(`http://localhost:3001/profile/${userId}`, 'GET', null, {
-                Authorization: `Bearer ${token}`
-            })
-            setProfiles(fetched)
-
-        } catch (e) {}
-    }, [token, request, userid])
 
 
     // delete user
@@ -73,10 +73,11 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
                 Authorization: `Bearer ${token}`
             } )
             if(data){
-                history.go(-1)
+                history.push(`/home/users/userProfile/${userId}`)
             }
         } catch (e) {}
     }
+
     // open popup user redaction
     const openPopup = () =>{
         setState(prev => ! prev);
@@ -96,6 +97,7 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             <h2>Profiles:</h2>
             <div className={"profile_set"}>
                 {profiles.map((profile: any) => {
+                    {console.log(userId, profile.owner)}
                     if (userId === profile.owner){
                         return (
                             <ProfileCard

@@ -3,6 +3,8 @@ import { useHTTP } from "../../../hooks/http.hook";
 import './popupProfile.scss';
 import '../../../less/typedInputs.scss';
 import { AuthContext } from "../../../context/AuthContext";
+import {useHistory, useRouteMatch} from "react-router-dom";
+import {UserContext} from "../../../context/UserContext";
 
 let click = false;
 
@@ -16,7 +18,10 @@ export interface StandardComponentProps{
 
 const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) => {
     const auth = useContext(AuthContext)
-    const {request} =useHTTP()
+    const user = useContext(UserContext)
+    const {loading, request} =useHTTP()
+    let { path, url} = useRouteMatch()
+    let history = useHistory()
 
     const closePopup = () => {
         if (!click){
@@ -31,13 +36,22 @@ const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) 
     const profileHandler = async () => {
         try {
             if (form.profile_id){
-                await request(`http://localhost:3001/profile/`, 'DELETE', form.profile_id, {
+                const data = await request(`http://localhost:3001/profile/update`, 'PUT', {...form}, {
                     Authorization: `Bearer ${auth.token}`
-                } )
+                })
             }
-            await request(`http://localhost:3001/profile/generate`, 'POST', {...form}, {
-                Authorization: `Bearer ${auth.token}`
-            })
+            else{
+                await request(`http://localhost:3001/profile/generate`, 'POST', {...form}, {
+                    Authorization: `Bearer ${auth.token}`
+                })
+            }
+
+            // if (!loading) {
+            //     if (url === '/home/profiles'){
+            //         history.go(0)
+            //     }
+            //     else{ history.push(`/home/users/profiles/${user.userId}`) }
+            // }
 
         } catch (e) {}
     }

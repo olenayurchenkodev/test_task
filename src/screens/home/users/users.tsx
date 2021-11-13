@@ -64,7 +64,7 @@ function Users(props) {
                         })}
                     </div>
                 </Route>
-                <UserContext.Provider value={{userName, userEmail, userId}}>
+                <UserContext.Provider value={{userName, userEmail, user_id: userId}}>
                     <Route path={`${path}/userProfile/${userId}`}>
                         <UserProfile
                             username={userName}

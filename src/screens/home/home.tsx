@@ -22,7 +22,6 @@ const Home = ()  =>{
     let history = useHistory()
     let adminStyle = ''
     if (auth.isAdminAuthenticated){adminStyle = 'admin'}
-    console.log('home',path)
     // get user from db
     const fetchLinks = useCallback(async () => {
         try {

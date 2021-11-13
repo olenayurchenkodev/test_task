@@ -4,11 +4,11 @@ import { AuthContext } from '../../../context/AuthContext';
 import React, {useContext, useState } from 'react';
 import { useHTTP } from '../../../hooks/http.hook';
 import PopupProfile from '../../popups/popupProfile/popupProfile';
-import Loader from '../../loader/loader'
 import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
 import './deleteButt.scss';
+import {UserContext} from "../../../context/UserContext";
 
 // props interface
 export interface StandardComponentProps{
@@ -21,6 +21,7 @@ export interface StandardComponentProps{
 }
 
 function ProfileCard({profile_id, name, sex, birthdate, location, owner}: StandardComponentProps) {
+    const user = useContext(UserContext)
     const {token} = useContext(AuthContext)
     const {loading, request} =useHTTP()
     let { path, url} = useRouteMatch()
@@ -38,7 +39,7 @@ function ProfileCard({profile_id, name, sex, birthdate, location, owner}: Standa
     // delete profile
     const deleteProfile = async () => {
         try {
-            const data = await request(`http://localhost:3001/profile/`, 'DELETE', {key: profile_id}, {
+            const data = await request(`http://localhost:3001/profile/`, 'DELETE', {...form}, {
                 Authorization: `Bearer ${token}`
             } )
             // console.log(data)
@@ -46,9 +47,7 @@ function ProfileCard({profile_id, name, sex, birthdate, location, owner}: Standa
                 if (url === '/home/profiles'){
                     history.go(0)
                 }
-                else{ history.go(-1) }
-
-
+                else{ history.go(0) }
             }
         } catch (e) {}
     }
