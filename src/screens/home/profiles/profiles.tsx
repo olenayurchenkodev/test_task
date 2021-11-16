@@ -6,7 +6,6 @@ import {useHTTP} from '../../../hooks/http.hook'
 import PopupProfile from '../../../components/popups/popupProfile/popupProfile'
 import ProfileCard from '../../../components/cards/profileCard/profileCard'
 import new_profile from '../../../less/img/new_profile.svg'
-import Home from '../home'
 import './profiles.scss'
 import './addProfile.scss'
 

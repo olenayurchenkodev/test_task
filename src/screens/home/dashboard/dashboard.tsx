@@ -22,12 +22,16 @@ function Dashboard() {
             setUsersNumber(users.length)
             let temp = 0;
             let temp1 = 0;
+            // console.log(users)
             for (let user of users) {
+                // console.log(user._id)
                 temp = temp + user.profileNum
-                const profiles = await request(`http://localhost:3001/profile/${user._id}`, 'GET', null, {
+                const profiles = await request(`http://localhost:3001/statistic/${user._id}`, 'GET', null, {
                     Authorization: `Bearer ${token}`
                 })
+                // console.log(profiles)
                 for (let profile of profiles){
+                    // console.log(profile)
                     if (profile.birthdate !== '' && +profile.birthdate.split('-')[0]<= 2003){
                         temp1++
                     }
@@ -35,6 +39,7 @@ function Dashboard() {
             }
             setProfilesNumber(temp)
             setProfilesOverNumber(temp1)
+            // console.log(temp1)
 
         } catch (e) {}
     }, [token, request])

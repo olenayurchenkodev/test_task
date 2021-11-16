@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, {useCallback, useContext, useEffect, useState } from 'react';
-import {Switch, Route, Link, useRouteMatch, Redirect, useHistory, useLocation} from "react-router-dom";
+import {Switch, Route, Link, useRouteMatch} from "react-router-dom";
 import { AuthContext } from '../../../context/AuthContext';
 import { UserContext} from "../../../context/UserContext";
 import { useHTTP } from '../../../hooks/http.hook';
@@ -9,7 +9,7 @@ import UserProfile from './userProfile/userProfile';
 import './users.scss';
 
 
-function Users(props) {
+function Users() {
     const {request} = useHTTP()
     const {token} = useContext(AuthContext)
     let { path, url} = useRouteMatch()

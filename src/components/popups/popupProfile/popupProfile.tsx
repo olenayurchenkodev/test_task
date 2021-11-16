@@ -3,8 +3,6 @@ import { useHTTP } from "../../../hooks/http.hook";
 import './popupProfile.scss';
 import '../../../less/typedInputs.scss';
 import { AuthContext } from "../../../context/AuthContext";
-import {useHistory, useRouteMatch} from "react-router-dom";
-import {UserContext} from "../../../context/UserContext";
 
 let click = false;
 
@@ -18,10 +16,7 @@ export interface StandardComponentProps{
 
 const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) => {
     const auth = useContext(AuthContext)
-    const user = useContext(UserContext)
-    const {loading, request} =useHTTP()
-    let { path, url} = useRouteMatch()
-    let history = useHistory()
+    const {request} =useHTTP()
 
     const closePopup = () => {
         if (!click){
@@ -36,7 +31,7 @@ const PopupProfile = ({form, setForm, state, setState}: StandardComponentProps) 
     const profileHandler = async () => {
         try {
             if (form.profile_id){
-                const data = await request(`http://localhost:3001/profile/update`, 'PUT', {...form}, {
+                await request(`http://localhost:3001/profile/update`, 'PUT', {...form}, {
                     Authorization: `Bearer ${auth.token}`
                 })
             }

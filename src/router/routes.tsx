@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
+import React from 'react'
+import {Switch, Route} from 'react-router-dom'
 import Profiles from '../screens/home/profiles/profiles'
 import Dashboard from '../screens/home/dashboard/dashboard'
 import Users from '../screens/home/users/users'

@@ -8,7 +8,6 @@ import './profileCard.scss';
 import  './buttons.scss';
 import './editButt.scss';
 import './deleteButt.scss';
-import {UserContext} from "../../../context/UserContext";
 
 // props interface
 export interface StandardComponentProps{
@@ -21,10 +20,9 @@ export interface StandardComponentProps{
 }
 
 function ProfileCard({profile_id, name, sex, birthdate, location, owner}: StandardComponentProps) {
-    const user = useContext(UserContext)
     const {token} = useContext(AuthContext)
     const {loading, request} =useHTTP()
-    let { path, url} = useRouteMatch()
+    let { url} = useRouteMatch()
     const [state, setState] = useState(false)
     const [form, setForm] = useState({
         name: name, gender: sex, birthdate: birthdate, city: location, userId: owner, profile_id: profile_id
@@ -39,7 +37,7 @@ function ProfileCard({profile_id, name, sex, birthdate, location, owner}: Standa
     // delete profile
     const deleteProfile = async () => {
         try {
-            const data = await request(`http://localhost:3001/profile/`, 'DELETE', {...form}, {
+            await request(`http://localhost:3001/profile/`, 'DELETE', {...form}, {
                 Authorization: `Bearer ${token}`
             } )
             // console.log(data)

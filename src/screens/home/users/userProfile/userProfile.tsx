@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, {useCallback, useContext, useEffect, useState } from 'react'
-import {useHistory, useLocation} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import { AuthContext } from '../../../../context/AuthContext'
 import { useHTTP } from '../../../../hooks/http.hook'
 import ProfileCard from '../../../../components/cards/profileCard/profileCard'
@@ -9,7 +9,6 @@ import Delete from '../../../../less/img/Delete.svg'
 import Edit from '../../../../less/img/Edit.svg'
 import './userProfile.scss'
 import './userInfo.scss'
-import Profiles from "../../profiles/profiles";
 
 // props interface
 export interface StandardComponentProps{
@@ -20,10 +19,9 @@ export interface StandardComponentProps{
 
 function UserProfile({username, useremail, userid}: StandardComponentProps) {
     const {token} = useContext(AuthContext)
-    const {loading, request} = useHTTP()
+    const { request} = useHTTP()
     const [state, setState] = useState(false);
     const [profiles, setProfiles] = useState([])
-    const [user, setUser] = useState([])
     const [isAdmin] = useState('off')
     const [userId, setUserId] = useState('')
     const [userName, setUserName] = useState('')
@@ -59,7 +57,7 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             fetchLinks()
 
         } catch (e) {}
-    }, [fetchLinks, request, token, userId])
+    }, [fetchLinks, request, token])
 
     useEffect(() => {
         userInfo()
@@ -97,7 +95,6 @@ function UserProfile({username, useremail, userid}: StandardComponentProps) {
             <h2>Profiles:</h2>
             <div className={"profile_set"}>
                 {profiles.map((profile: any) => {
-                    {console.log(userId, profile.owner)}
                     if (userId === profile.owner){
                         return (
                             <ProfileCard
